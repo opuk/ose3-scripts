@@ -1,5 +1,5 @@
 #!/bin/bash
-
+#before running this script, register and attach subscription
 subscription-manager repos --disable="*"
 subscription-manager repos \
     --enable="rhel-7-server-rpms" \
