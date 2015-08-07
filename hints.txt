@@ -1,0 +1,4 @@
+setting a custom hostname on openstack:
+
+#cloud-config 
+hostname: foo.example.com
