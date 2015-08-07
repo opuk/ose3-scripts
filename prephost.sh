@@ -14,3 +14,9 @@ yum update -y
 yum install docker -y
 sed -i "s/OPTIONS.*/OPTIONS='--selinux-enabled --insecure-registry 172.30.0.0\/0'/" /etc/sysconfig/docker
 
+cat <<EOF > /etc/sysconfig/docker-storage-setup
+DEVS=/dev/vdb
+VG=docker-vg
+EOF
+
+docker-storage-setup
