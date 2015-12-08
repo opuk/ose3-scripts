@@ -5,7 +5,7 @@ subscription-manager repos \
     --enable="rhel-7-server-rpms" \
     --enable="rhel-7-server-extras-rpms" \
     --enable="rhel-7-server-optional-rpms" \
-    --enable="rhel-7-server-ose-3.0-rpms"
+    --enable="rhel-7-server-ose-3.1-rpms"
 yum remove NetworkManager -y
 yum install wget git net-tools bind-utils iptables-services bridge-utils -y
 #quick install only?
