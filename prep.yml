@@ -1,0 +1,43 @@
+---
+- hosts: all
+
+  tasks:
+  - name: Set hostname
+    shell: /usr/bin/hostnamectl set-hostname {{ inventory_hostname }}
+    when: inventory_hostname != ansible_fqdn
+
+  - name: Install prereq packages
+    yum: name={{ item }} state=installed
+    with_items:
+      - wget
+      - git
+      - net-tools
+      - bind-utils
+      - iptables-services
+      - bridge-utils
+      - gcc
+      - python-virtualenv
+      - docker
+
+  - name: Update all packages
+    yum: name=* state=latest
+
+  - debug: var=ansible_default_ipv4.address
+
+- hosts: nodes
+
+  tasks:
+  - name: Configure docker-storage
+    template:
+      src: docker-storage-setup.j2
+      dest: /etc/sysconfig/docker-storage-setup
+  
+  - name: Check if docker storage has been set up.
+    command: grep -q "/dev/mapper/docker" /etc/sysconfig/docker-storage
+    register: docker_storage_test
+    failed_when: False
+    changed_when: False
+
+  - name: Execute docker-storage-setup
+    shell: /usr/bin/docker-storage-setup
+    when: docker_storage_test.rc != 0
