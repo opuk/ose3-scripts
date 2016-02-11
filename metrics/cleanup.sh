@@ -1,5 +1,7 @@
 #!/bin/bash
 
+oc project openshift-infra
+
 for i in $(oc get secret | egrep "(hawkular|heapster|metrics)" | awk '{ print $1 }'); do
   oc delete secret $i
 done
