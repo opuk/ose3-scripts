@@ -14,19 +14,19 @@
       - net-tools
       - bind-utils
       - iptables-services
+      - iptables
       - bridge-utils
       - gcc
       - python-virtualenv
       - docker
+  - name: Start and enable iptables service
+    service: name=iptables state=running enabled=yes
 
   - name: Update all packages
     yum: name=* state=latest
 
   - debug: var=ansible_default_ipv4.address
 
-- hosts: nodes
-
-  tasks:
   - name: Configure docker-storage
     template:
       src: docker-storage-setup.j2
@@ -41,3 +41,21 @@
   - name: Execute docker-storage-setup
     shell: /usr/bin/docker-storage-setup
     when: docker_storage_test.rc != 0
+
+- hosts: masters[0]
+  
+  tasks:
+  - name: Install atomic-openshift-utils
+    yum: name=atomic-openshift-utils state=installed
+
+#- hosts: all
+#  tasks:
+#  - name: Reboot servers
+#    shell: sleep 2 && reboot
+#    async: 1
+#    poll: 0
+#    ignore_errors: true
+
+#  - name: Waiting for servers to come back online
+#    local_action: wait_for host={{ item }} timeout=300 state=started delay=30
+#    with_items: inventory_hostname
