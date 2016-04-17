@@ -20,9 +20,9 @@ docker pull registry.access.redhat.com/openshift3/metrics-heapster
 # docker pull registry.access.redhat.com/jboss-amq-6/amq-openshift
 # docker pull registry.access.redhat.com/jboss-eap-6/eap-openshift
 # docker pull registry.access.redhat.com/jboss-webserver-3/tomcat7-openshift
-docker pull registry.access.redhat.com/jboss-webserver-3/tomcat8-openshift
+# docker pull registry.access.redhat.com/jboss-webserver-3/tomcat8-openshift
 # docker pull registry.access.redhat.com/rhscl/mongodb-26-rhel7
-# docker pull registry.access.redhat.com/rhscl/mysql-56-rhel7
+docker pull registry.access.redhat.com/rhscl/mysql-56-rhel7
 # docker pull registry.access.redhat.com/rhscl/perl-520-rhel7
 docker pull registry.access.redhat.com/rhscl/php-56-rhel7
 docker pull registry.access.redhat.com/rhscl/postgresql-94-rhel7
