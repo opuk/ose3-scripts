@@ -3,7 +3,8 @@
 #Note that hosts needs to be resolveable before the actual OSE installation
 
 [masters]
-ose-master1.example.com ansible_ssh_host=192.168.122.122
+master1.example.com 
 
 [nodes]
-ose-node1.example.com ansible_ssh_host=192.168.122.31
+node1.example.com 
+infra1.example.com 
