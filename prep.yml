@@ -16,8 +16,6 @@
       - iptables-services
       - iptables
       - bridge-utils
-      - gcc
-      - python-virtualenv
       - docker
 
   - name: Start and enable iptables service
@@ -28,16 +26,19 @@
 
   - debug: var=ansible_default_ipv4.address
 
-  - name: Configure docker-storage
-    template:
-      src: docker-storage-setup.j2
-      dest: /etc/sysconfig/docker-storage-setup
-  
+
+- hosts: nodes
+  tasks:
   - name: Check if docker storage has been set up.
     command: grep -q "/dev/mapper/docker" /etc/sysconfig/docker-storage
     register: docker_storage_test
     failed_when: False
     changed_when: False
+
+  - name: Configure docker-storage
+    template:
+      src: docker-storage-setup.j2
+      dest: /etc/sysconfig/docker-storage-setup
 
   - name: Execute docker-storage-setup
     shell: /usr/bin/docker-storage-setup
