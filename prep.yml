@@ -17,6 +17,7 @@
       - iptables
       - bridge-utils
       - docker
+      - NetworkManager
 
   - name: Start and enable iptables service
     service: name=iptables state=running enabled=yes
