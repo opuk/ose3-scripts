@@ -10,17 +10,9 @@
     yum: name={{ item }} state=installed
     with_items:
       - wget
-      - git
       - net-tools
       - bind-utils
-      - iptables-services
-      - iptables
-      - bridge-utils
       - docker
-      - NetworkManager
-
-  - name: Start and enable iptables service
-    service: name=iptables state=running enabled=yes
 
   - name: Update all packages
     yum: name=* state=latest
