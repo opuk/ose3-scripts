@@ -12,12 +12,12 @@ for i in ${upstream_repos[@]}; do
   docker pull -a $UPSTREAM_REGISTRY/$i
 done
 
-for IMAGE in $(docker images |grep registry.access.redhat.com|awk '{print $1}'|sort|uniq) 
+for IMAGE in $(docker images |grep registry.access.redhat.com|awk '{print $1}'|sort -u) 
 do
   echo $IMAGE
   NEW_IMAGE=$(echo ${IMAGE}|sed "s/registry.access.redhat.com/$REGISTRY/")
 
-  for IMAGE_TAG in $(docker images | grep $IMAGE |awk '{print $2}'|sort|uniq)
+  for IMAGE_TAG in $(docker images | grep $IMAGE |awk '{print $2}'|sort -u)
   do
     echo $IMAGE_TAG
     docker tag ${IMAGE}:${IMAGE_TAG} ${NEW_IMAGE}:${IMAGE_TAG}
