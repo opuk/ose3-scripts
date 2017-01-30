@@ -13,6 +13,9 @@
       - net-tools
       - bind-utils
       - docker
+      - iptables-services
+      - bridge-utils
+      - bash-completion
 
   - name: Update all packages
     yum: name=* state=latest
