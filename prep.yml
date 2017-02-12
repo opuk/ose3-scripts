@@ -16,6 +16,7 @@
       - iptables-services
       - bridge-utils
       - bash-completion
+      - python-six
 
   - name: Update all packages
     yum: name=* state=latest
