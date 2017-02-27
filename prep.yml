@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: masters:nodes
 
   tasks:
   - name: Install prereq packages
