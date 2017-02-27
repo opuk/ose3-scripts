@@ -2,10 +2,6 @@
 - hosts: all
 
   tasks:
-  - name: Set hostname
-    shell: /usr/bin/hostnamectl set-hostname {{ inventory_hostname }}
-    when: inventory_hostname != ansible_fqdn
-
   - name: Install prereq packages
     yum: name={{ item }} state=installed
     with_items:
@@ -17,6 +13,7 @@
       - bridge-utils
       - bash-completion
       - python-six
+      - NetworkManager
 
   - name: Update all packages
     yum: name=* state=latest
