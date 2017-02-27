@@ -17,9 +17,9 @@
 
   - name: make sure NetworkManager is started and enabled
     service:
-    name: NetworkManager
-    state: running
-    enabled: yes
+      name: NetworkManager
+      state: running
+      enabled: yes
 
   - name: Update all packages
     yum: name=* state=latest
