@@ -813,6 +813,54 @@ items:
   kind: ImageStream
   metadata:
     annotations:
+      openshift.io/image.dockerRepositoryCheck: 2017-04-01T09:42:02Z
+    creationTimestamp: null
+    generation: 2
+    name: ose-keepalived-ipfailover
+  spec:
+    dockerImageRepository: registry.access.redhat.com/openshift3/ose-keepalived-ipfailover
+    tags:
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/ose-keepalived-ipfailover:latest
+      generation: 2
+      importPolicy: {}
+      name: latest
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/ose-keepalived-ipfailover:v3.1
+      generation: 2
+      importPolicy: {}
+      name: v3.1
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/ose-keepalived-ipfailover:v3.2
+      generation: 2
+      importPolicy: {}
+      name: v3.2
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/ose-keepalived-ipfailover:v3.3
+      generation: 2
+      importPolicy: {}
+      name: v3.3
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/ose-keepalived-ipfailover:v3.4
+      generation: 2
+      importPolicy: {}
+      name: v3.4
+  status:
+    dockerImageRepository: ""
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    annotations:
       openshift.io/image.dockerRepositoryCheck: 2017-04-01T09:26:59Z
     creationTimestamp: null
     generation: 2
