@@ -1,0 +1,909 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    annotations:
+      openshift.io/image.dockerRepositoryCheck: 2017-04-01T09:29:40Z
+    creationTimestamp: null
+    generation: 2
+    name: logging-auth-proxy
+  spec:
+    dockerImageRepository: registry.access.redhat.com/openshift3/logging-auth-proxy
+    tags:
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/logging-auth-proxy:latest
+      generation: 2
+      importPolicy: {}
+      name: latest
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/logging-auth-proxy:v3.1
+      generation: 2
+      importPolicy: {}
+      name: v3.1
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/logging-auth-proxy:v3.2
+      generation: 2
+      importPolicy: {}
+      name: v3.2
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/logging-auth-proxy:v3.3
+      generation: 2
+      importPolicy: {}
+      name: v3.3
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/logging-auth-proxy:v3.4
+      generation: 2
+      importPolicy: {}
+      name: v3.4
+  status:
+    dockerImageRepository: ""
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    annotations:
+      openshift.io/image.dockerRepositoryCheck: 2017-04-01T09:29:23Z
+    creationTimestamp: null
+    generation: 2
+    name: logging-curator
+  spec:
+    dockerImageRepository: registry.access.redhat.com/openshift3/logging-curator
+    tags:
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/logging-curator:3.4.1
+      generation: 2
+      importPolicy: {}
+      name: 3.4.1
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/logging-curator:latest
+      generation: 2
+      importPolicy: {}
+      name: latest
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/logging-curator:v3.2
+      generation: 2
+      importPolicy: {}
+      name: v3.2
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/logging-curator:v3.3
+      generation: 2
+      importPolicy: {}
+      name: v3.3
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/logging-curator:v3.4
+      generation: 2
+      importPolicy: {}
+      name: v3.4
+  status:
+    dockerImageRepository: ""
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    annotations:
+      openshift.io/image.dockerRepositoryCheck: 2017-04-01T09:27:54Z
+    creationTimestamp: null
+    generation: 2
+    name: logging-deployer
+  spec:
+    dockerImageRepository: registry.access.redhat.com/openshift3/logging-deployer
+    tags:
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/logging-deployer:3.4.1
+      generation: 2
+      importPolicy: {}
+      name: 3.4.1
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/logging-deployer:latest
+      generation: 2
+      importPolicy: {}
+      name: latest
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/logging-deployer:v3.3
+      generation: 2
+      importPolicy: {}
+      name: v3.3
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/logging-deployer:v3.4
+      generation: 2
+      importPolicy: {}
+      name: v3.4
+  status:
+    dockerImageRepository: ""
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    annotations:
+      openshift.io/image.dockerRepositoryCheck: 2017-04-01T09:28:11Z
+    creationTimestamp: null
+    generation: 2
+    name: logging-elasticsearch
+  spec:
+    dockerImageRepository: registry.access.redhat.com/openshift3/logging-elasticsearch
+    tags:
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/logging-elasticsearch:latest
+      generation: 2
+      importPolicy: {}
+      name: latest
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/logging-elasticsearch:v3.1
+      generation: 2
+      importPolicy: {}
+      name: v3.1
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/logging-elasticsearch:v3.2
+      generation: 2
+      importPolicy: {}
+      name: v3.2
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/logging-elasticsearch:v3.3
+      generation: 2
+      importPolicy: {}
+      name: v3.3
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/logging-elasticsearch:v3.4
+      generation: 2
+      importPolicy: {}
+      name: v3.4
+  status:
+    dockerImageRepository: ""
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    annotations:
+      openshift.io/image.dockerRepositoryCheck: 2017-04-01T09:29:07Z
+    creationTimestamp: null
+    generation: 2
+    name: logging-fluentd
+  spec:
+    dockerImageRepository: registry.access.redhat.com/openshift3/logging-fluentd
+    tags:
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/logging-fluentd:latest
+      generation: 2
+      importPolicy: {}
+      name: latest
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/logging-fluentd:v3.1
+      generation: 2
+      importPolicy: {}
+      name: v3.1
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/logging-fluentd:v3.2
+      generation: 2
+      importPolicy: {}
+      name: v3.2
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/logging-fluentd:v3.3
+      generation: 2
+      importPolicy: {}
+      name: v3.3
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/logging-fluentd:v3.4
+      generation: 2
+      importPolicy: {}
+      name: v3.4
+  status:
+    dockerImageRepository: ""
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    annotations:
+      openshift.io/image.dockerRepositoryCheck: 2017-04-01T09:28:40Z
+    creationTimestamp: null
+    generation: 2
+    name: logging-kibana
+  spec:
+    dockerImageRepository: registry.access.redhat.com/openshift3/logging-kibana
+    tags:
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/logging-kibana:latest
+      generation: 2
+      importPolicy: {}
+      name: latest
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/logging-kibana:v3.1
+      generation: 2
+      importPolicy: {}
+      name: v3.1
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/logging-kibana:v3.2
+      generation: 2
+      importPolicy: {}
+      name: v3.2
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/logging-kibana:v3.3
+      generation: 2
+      importPolicy: {}
+      name: v3.3
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/logging-kibana:v3.4
+      generation: 2
+      importPolicy: {}
+      name: v3.4
+  status:
+    dockerImageRepository: ""
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    annotations:
+      openshift.io/image.dockerRepositoryCheck: 2017-04-01T09:30:49Z
+    creationTimestamp: null
+    generation: 2
+    name: metrics-cassandra
+  spec:
+    dockerImageRepository: registry.access.redhat.com/openshift3/metrics-cassandra
+    tags:
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/metrics-cassandra:3.4.1
+      generation: 2
+      importPolicy: {}
+      name: 3.4.1
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/metrics-cassandra:latest
+      generation: 2
+      importPolicy: {}
+      name: latest
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/metrics-cassandra:v3.2
+      generation: 2
+      importPolicy: {}
+      name: v3.2
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/metrics-cassandra:v3.3
+      generation: 2
+      importPolicy: {}
+      name: v3.3
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/metrics-cassandra:v3.4
+      generation: 2
+      importPolicy: {}
+      name: v3.4
+  status:
+    dockerImageRepository: ""
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    annotations:
+      openshift.io/image.dockerRepositoryCheck: 2017-04-01T09:30:02Z
+    creationTimestamp: null
+    generation: 2
+    name: metrics-deployer
+  spec:
+    dockerImageRepository: registry.access.redhat.com/openshift3/metrics-deployer
+    tags:
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/metrics-deployer:latest
+      generation: 2
+      importPolicy: {}
+      name: latest
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/metrics-deployer:v3.1
+      generation: 2
+      importPolicy: {}
+      name: v3.1
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/metrics-deployer:v3.2
+      generation: 2
+      importPolicy: {}
+      name: v3.2
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/metrics-deployer:v3.3
+      generation: 2
+      importPolicy: {}
+      name: v3.3
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/metrics-deployer:v3.4
+      generation: 2
+      importPolicy: {}
+      name: v3.4
+  status:
+    dockerImageRepository: ""
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    annotations:
+      openshift.io/image.dockerRepositoryCheck: 2017-04-01T09:30:26Z
+    creationTimestamp: null
+    generation: 2
+    name: metrics-hawkular-metrics
+  spec:
+    dockerImageRepository: registry.access.redhat.com/openshift3/metrics-hawkular-metrics
+    tags:
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/metrics-hawkular-metrics:latest
+      generation: 2
+      importPolicy: {}
+      name: latest
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/metrics-hawkular-metrics:v3.1
+      generation: 2
+      importPolicy: {}
+      name: v3.1
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/metrics-hawkular-metrics:v3.2
+      generation: 2
+      importPolicy: {}
+      name: v3.2
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/metrics-hawkular-metrics:v3.3
+      generation: 2
+      importPolicy: {}
+      name: v3.3
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/metrics-hawkular-metrics:v3.4
+      generation: 2
+      importPolicy: {}
+      name: v3.4
+  status:
+    dockerImageRepository: ""
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    annotations:
+      openshift.io/image.dockerRepositoryCheck: 2017-04-01T09:31:08Z
+    creationTimestamp: null
+    generation: 2
+    name: metrics-heapster
+  spec:
+    dockerImageRepository: registry.access.redhat.com/openshift3/metrics-heapster
+    tags:
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/metrics-heapster:latest
+      generation: 2
+      importPolicy: {}
+      name: latest
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/metrics-heapster:v3.1
+      generation: 2
+      importPolicy: {}
+      name: v3.1
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/metrics-heapster:v3.2
+      generation: 2
+      importPolicy: {}
+      name: v3.2
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/metrics-heapster:v3.3
+      generation: 2
+      importPolicy: {}
+      name: v3.3
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/metrics-heapster:v3.4
+      generation: 2
+      importPolicy: {}
+      name: v3.4
+  status:
+    dockerImageRepository: ""
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    annotations:
+      openshift.io/image.dockerRepositoryCheck: 2017-04-01T09:26:28Z
+    creationTimestamp: null
+    generation: 2
+    name: node
+  spec:
+    dockerImageRepository: registry.access.redhat.com/openshift3/node
+    tags:
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/node:latest
+      generation: 2
+      importPolicy: {}
+      name: latest
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/node:v3.1
+      generation: 2
+      importPolicy: {}
+      name: v3.1
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/node:v3.2
+      generation: 2
+      importPolicy: {}
+      name: v3.2
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/node:v3.3
+      generation: 2
+      importPolicy: {}
+      name: v3.3
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/node:v3.4
+      generation: 2
+      importPolicy: {}
+      name: v3.4
+  status:
+    dockerImageRepository: ""
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    annotations:
+      openshift.io/image.dockerRepositoryCheck: 2017-04-01T09:26:33Z
+    creationTimestamp: null
+    generation: 2
+    name: openvswitch
+  spec:
+    dockerImageRepository: registry.access.redhat.com/openshift3/openvswitch
+    tags:
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/openvswitch:latest
+      generation: 2
+      importPolicy: {}
+      name: latest
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/openvswitch:v3.1
+      generation: 2
+      importPolicy: {}
+      name: v3.1
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/openvswitch:v3.2
+      generation: 2
+      importPolicy: {}
+      name: v3.2
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/openvswitch:v3.3
+      generation: 2
+      importPolicy: {}
+      name: v3.3
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/openvswitch:v3.4
+      generation: 2
+      importPolicy: {}
+      name: v3.4
+  status:
+    dockerImageRepository: ""
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    annotations:
+      openshift.io/image.dockerRepositoryCheck: 2017-04-01T09:26:37Z
+    creationTimestamp: null
+    generation: 2
+    name: ose
+  spec:
+    dockerImageRepository: registry.access.redhat.com/openshift3/ose
+    tags:
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/ose:latest
+      generation: 2
+      importPolicy: {}
+      name: latest
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/ose:v3.1
+      generation: 2
+      importPolicy: {}
+      name: v3.1
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/ose:v3.2
+      generation: 2
+      importPolicy: {}
+      name: v3.2
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/ose:v3.3
+      generation: 2
+      importPolicy: {}
+      name: v3.3
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/ose:v3.4
+      generation: 2
+      importPolicy: {}
+      name: v3.4
+  status:
+    dockerImageRepository: ""
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    annotations:
+      openshift.io/image.dockerRepositoryCheck: 2017-04-01T09:26:41Z
+    creationTimestamp: null
+    generation: 2
+    name: ose-deployer
+  spec:
+    dockerImageRepository: registry.access.redhat.com/openshift3/ose-deployer
+    tags:
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/ose-deployer:latest
+      generation: 2
+      importPolicy: {}
+      name: latest
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/ose-deployer:v3.1
+      generation: 2
+      importPolicy: {}
+      name: v3.1
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/ose-deployer:v3.2
+      generation: 2
+      importPolicy: {}
+      name: v3.2
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/ose-deployer:v3.3
+      generation: 2
+      importPolicy: {}
+      name: v3.3
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/ose-deployer:v3.4
+      generation: 2
+      importPolicy: {}
+      name: v3.4
+  status:
+    dockerImageRepository: ""
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    annotations:
+      openshift.io/image.dockerRepositoryCheck: 2017-04-01T09:26:46Z
+    creationTimestamp: null
+    generation: 2
+    name: ose-docker-builder
+  spec:
+    dockerImageRepository: registry.access.redhat.com/openshift3/ose-docker-builder
+    tags:
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/ose-docker-builder:latest
+      generation: 2
+      importPolicy: {}
+      name: latest
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/ose-docker-builder:v3.1
+      generation: 2
+      importPolicy: {}
+      name: v3.1
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/ose-docker-builder:v3.2
+      generation: 2
+      importPolicy: {}
+      name: v3.2
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/ose-docker-builder:v3.3
+      generation: 2
+      importPolicy: {}
+      name: v3.3
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/ose-docker-builder:v3.4
+      generation: 2
+      importPolicy: {}
+      name: v3.4
+  status:
+    dockerImageRepository: ""
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    annotations:
+      openshift.io/image.dockerRepositoryCheck: 2017-04-01T09:26:50Z
+    creationTimestamp: null
+    generation: 2
+    name: ose-docker-registry
+  spec:
+    dockerImageRepository: registry.access.redhat.com/openshift3/ose-docker-registry
+    tags:
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/ose-docker-registry:latest
+      generation: 2
+      importPolicy: {}
+      name: latest
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/ose-docker-registry:v3.1
+      generation: 2
+      importPolicy: {}
+      name: v3.1
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/ose-docker-registry:v3.2
+      generation: 2
+      importPolicy: {}
+      name: v3.2
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/ose-docker-registry:v3.3
+      generation: 2
+      importPolicy: {}
+      name: v3.3
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/ose-docker-registry:v3.4
+      generation: 2
+      importPolicy: {}
+      name: v3.4
+  status:
+    dockerImageRepository: ""
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    annotations:
+      openshift.io/image.dockerRepositoryCheck: 2017-04-01T09:26:55Z
+    creationTimestamp: null
+    generation: 2
+    name: ose-haproxy-router
+  spec:
+    dockerImageRepository: registry.access.redhat.com/openshift3/ose-haproxy-router
+    tags:
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/ose-haproxy-router:latest
+      generation: 2
+      importPolicy: {}
+      name: latest
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/ose-haproxy-router:v3.1
+      generation: 2
+      importPolicy: {}
+      name: v3.1
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/ose-haproxy-router:v3.2
+      generation: 2
+      importPolicy: {}
+      name: v3.2
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/ose-haproxy-router:v3.3
+      generation: 2
+      importPolicy: {}
+      name: v3.3
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/ose-haproxy-router:v3.4
+      generation: 2
+      importPolicy: {}
+      name: v3.4
+  status:
+    dockerImageRepository: ""
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    annotations:
+      openshift.io/image.dockerRepositoryCheck: 2017-04-01T09:26:59Z
+    creationTimestamp: null
+    generation: 2
+    name: ose-pod
+  spec:
+    dockerImageRepository: registry.access.redhat.com/openshift3/ose-pod
+    tags:
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/ose-pod:latest
+      generation: 2
+      importPolicy: {}
+      name: latest
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/ose-pod:v3.1
+      generation: 2
+      importPolicy: {}
+      name: v3.1
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/ose-pod:v3.2
+      generation: 2
+      importPolicy: {}
+      name: v3.2
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/ose-pod:v3.3
+      generation: 2
+      importPolicy: {}
+      name: v3.3
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/ose-pod:v3.4
+      generation: 2
+      importPolicy: {}
+      name: v3.4
+  status:
+    dockerImageRepository: ""
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    annotations:
+      openshift.io/image.dockerRepositoryCheck: 2017-04-01T09:27:04Z
+    creationTimestamp: null
+    generation: 2
+    name: ose-sti-builder
+  spec:
+    dockerImageRepository: registry.access.redhat.com/openshift3/ose-sti-builder
+    tags:
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/ose-sti-builder:latest
+      generation: 2
+      importPolicy: {}
+      name: latest
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/ose-sti-builder:v3.1
+      generation: 2
+      importPolicy: {}
+      name: v3.1
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/ose-sti-builder:v3.2
+      generation: 2
+      importPolicy: {}
+      name: v3.2
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/ose-sti-builder:v3.3
+      generation: 2
+      importPolicy: {}
+      name: v3.3
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/ose-sti-builder:v3.4
+      generation: 2
+      importPolicy: {}
+      name: v3.4
+  status:
+    dockerImageRepository: ""
+kind: List
+metadata: {}
