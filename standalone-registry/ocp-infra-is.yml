@@ -62,6 +62,64 @@ items:
   kind: ImageStream
   metadata:
     annotations:
+      openshift.io/image.dockerRepositoryCheck: 2017-05-01T07:59:39Z
+    creationTimestamp: null
+    generation: 2
+    name: httpd-24-rhel7
+  spec:
+    dockerImageRepository: registry.access.redhat.com/rhscl/httpd-24-rhel7
+    tags:
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/rhscl/httpd-24-rhel7:2.4
+      generation: 2
+      importPolicy: {}
+      name: "2.4"
+      referencePolicy:
+        type: Source
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/rhscl/httpd-24-rhel7:2.4-10
+      generation: 2
+      importPolicy: {}
+      name: 2.4-10
+      referencePolicy:
+        type: Source
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/rhscl/httpd-24-rhel7:2.4-32
+      generation: 2
+      importPolicy: {}
+      name: 2.4-32
+      referencePolicy:
+        type: Source
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/rhscl/httpd-24-rhel7:2.4-9
+      generation: 2
+      importPolicy: {}
+      name: 2.4-9
+      referencePolicy:
+        type: Source
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/rhscl/httpd-24-rhel7:latest
+      generation: 2
+      importPolicy: {}
+      name: latest
+      referencePolicy:
+        type: Source
+  status:
+    dockerImageRepository: ""
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    annotations:
       openshift.io/image.dockerRepositoryCheck: 2017-04-14T13:44:50Z
     creationTimestamp: null
     generation: 3
