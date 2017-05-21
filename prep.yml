@@ -1,62 +1,14 @@
----
-- hosts: masters:nodes
+- hosts: all
+  become: True
+  roles:
+    - common_prep
 
-  tasks:
-  - name: Install prereq packages
-    yum: name={{ item }} state=installed
-    with_items:
-      - wget
-      - net-tools
-      - bind-utils
-      - docker
-      - iptables-services
-      - bridge-utils
-      - bash-completion
-      - python-six
-      - NetworkManager
-
-  - name: make sure NetworkManager is started and enabled
-    service:
-      name: NetworkManager
-      state: running
-      enabled: yes
-
-  - name: Update all packages
-    yum: name=* state=latest
-
-  - debug: var=ansible_default_ipv4.address
+- hosts: masters
+  become: True
+  roles:
+    - master_prep
 
 - hosts: nodes
-  tasks:
-  - name: Check if docker storage has been set up.
-    command: grep -q "/dev/mapper/docker" /etc/sysconfig/docker-storage
-    register: docker_storage_test
-    failed_when: False
-    changed_when: False
-
-  - name: Configure docker-storage
-    template:
-      src: docker-storage-setup.j2
-      dest: /etc/sysconfig/docker-storage-setup
-
-  - name: Execute docker-storage-setup
-    shell: /usr/bin/docker-storage-setup
-    when: docker_storage_test.rc != 0
-
-- hosts: masters[0]
-  
-  tasks:
-  - name: Install atomic-openshift-utils
-    yum: name=atomic-openshift-utils state=installed
-
-#- hosts: all
-#  tasks:
-#  - name: Reboot servers
-#    shell: sleep 2 && reboot
-#    async: 1
-#    poll: 0
-#    ignore_errors: true
-
-#  - name: Waiting for servers to come back online
-#    local_action: wait_for host={{ item }} timeout=300 state=started delay=30
-#    with_items: inventory_hostname
+  become: True
+  roles:
+    - node_prep

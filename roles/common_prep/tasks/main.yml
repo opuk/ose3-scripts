@@ -1,0 +1,9 @@
+---
+# tasks file for common_prep
+- name: deploy repo file
+  command: curl http://192.168.122.247/pub/ose3.repo -o /etc/yum.repos.d/ose3.repo
+  when: local_repos == True
+
+- name: Update all packages
+  yum: name=* state=latest
+

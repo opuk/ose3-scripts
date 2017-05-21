@@ -1,0 +1,36 @@
+---
+# tasks file for node_prep
+- name: Install prereq packages
+  yum: name={{ item }} state=installed
+  with_items:
+    - wget
+    - net-tools
+    - bind-utils
+    - docker
+    - iptables-services
+    - bridge-utils
+    - bash-completion
+    - python-six
+    - NetworkManager
+
+- name: make sure NetworkManager is started and enabled
+  service:
+    name: NetworkManager
+    state: running
+    enabled: yes
+
+- name: Check if docker storage has been set up.
+  command: grep -q "/dev/mapper/docker" /etc/sysconfig/docker-storage
+  register: docker_storage_test
+  failed_when: False
+  changed_when: False
+
+- name: Configure docker-storage
+  template:
+    src: docker-storage-setup.j2
+    dest: /etc/sysconfig/docker-storage-setup
+
+- name: Execute docker-storage-setup
+  shell: /usr/bin/docker-storage-setup
+  when: docker_storage_test.rc != 0
+

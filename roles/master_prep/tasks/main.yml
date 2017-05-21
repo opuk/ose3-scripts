@@ -1,0 +1,12 @@
+---
+# tasks file for master_prep
+- name: create /etc/origin
+  file:
+    state: directory
+    path: /etc/origin
+
+- name: Copy CA certificate
+  copy:
+    src: /root/ca.crt
+    dest: /etc/origin/ipa.crt
+
