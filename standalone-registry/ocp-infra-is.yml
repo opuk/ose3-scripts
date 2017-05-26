@@ -120,6 +120,64 @@ items:
   kind: ImageStream
   metadata:
     annotations:
+      openshift.io/image.dockerRepositoryCheck: 2017-05-18T09:52:55Z
+    creationTimestamp: null
+    generation: 2
+    name: jenkins-2-rhel7
+  spec:
+    dockerImageRepository: registry.access.redhat.com/openshift3/jenkins-2-rhel7
+    tags:
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/jenkins-2-rhel7:latest
+      generation: 2
+      importPolicy: {}
+      name: latest
+      referencePolicy:
+        type: Source
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/jenkins-2-rhel7:v3.2
+      generation: 2
+      importPolicy: {}
+      name: v3.2
+      referencePolicy:
+        type: Source
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/jenkins-2-rhel7:v3.3
+      generation: 2
+      importPolicy: {}
+      name: v3.3
+      referencePolicy:
+        type: Source
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/jenkins-2-rhel7:v3.4
+      generation: 2
+      importPolicy: {}
+      name: v3.4
+      referencePolicy:
+        type: Source
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/openshift3/jenkins-2-rhel7:v3.5
+      generation: 2
+      importPolicy: {}
+      name: v3.5
+      referencePolicy:
+        type: Source
+  status:
+    dockerImageRepository: ""
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    annotations:
       openshift.io/image.dockerRepositoryCheck: 2017-04-14T13:44:50Z
     creationTimestamp: null
     generation: 3

@@ -1,0 +1,120 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    annotations:
+      openshift.io/image.dockerRepositoryCheck: 2017-05-26T12:38:08Z
+    creationTimestamp: null
+    generation: 2
+    name: rhgs-server-rhel7
+  spec:
+    dockerImageRepository: registry.access.redhat.com/rhgs3/rhgs-server-rhel7
+    tags:
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/rhgs3/rhgs-server-rhel7:3.1.3-14
+      generation: 2
+      importPolicy: {}
+      name: 3.1.3-14
+      referencePolicy:
+        type: Source
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/rhgs3/rhgs-server-rhel7:3.1.3-17
+      generation: 2
+      importPolicy: {}
+      name: 3.1.3-17
+      referencePolicy:
+        type: Source
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/rhgs3/rhgs-server-rhel7:3.2.0-4
+      generation: 2
+      importPolicy: {}
+      name: 3.2.0-4
+      referencePolicy:
+        type: Source
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/rhgs3/rhgs-server-rhel7:3.2.0-5
+      generation: 2
+      importPolicy: {}
+      name: 3.2.0-5
+      referencePolicy:
+        type: Source
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/rhgs3/rhgs-server-rhel7:latest
+      generation: 2
+      importPolicy: {}
+      name: latest
+      referencePolicy:
+        type: Source
+  status:
+    dockerImageRepository: ""
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    annotations:
+      openshift.io/image.dockerRepositoryCheck: 2017-05-26T12:08:31Z
+    creationTimestamp: null
+    generation: 2
+    name: rhgs-volmanager-rhel7
+  spec:
+    dockerImageRepository: registry.access.redhat.com/rhgs3/rhgs-volmanager-rhel7
+    tags:
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/rhgs3/rhgs-volmanager-rhel7:3.1.3-13
+      generation: 2
+      importPolicy: {}
+      name: 3.1.3-13
+      referencePolicy:
+        type: Source
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/rhgs3/rhgs-volmanager-rhel7:3.1.3-27
+      generation: 2
+      importPolicy: {}
+      name: 3.1.3-27
+      referencePolicy:
+        type: Source
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/rhgs3/rhgs-volmanager-rhel7:3.2.0-10
+      generation: 2
+      importPolicy: {}
+      name: 3.2.0-10
+      referencePolicy:
+        type: Source
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/rhgs3/rhgs-volmanager-rhel7:3.2.0-8
+      generation: 2
+      importPolicy: {}
+      name: 3.2.0-8
+      referencePolicy:
+        type: Source
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/rhgs3/rhgs-volmanager-rhel7:latest
+      generation: 2
+      importPolicy: {}
+      name: latest
+      referencePolicy:
+        type: Source
+  status:
+    dockerImageRepository: ""
+kind: List
+metadata: {}

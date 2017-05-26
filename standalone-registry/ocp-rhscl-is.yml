@@ -1,0 +1,671 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    annotations:
+      openshift.io/image.dockerRepositoryCheck: 2017-05-18T10:05:07Z
+    creationTimestamp: null
+    generation: 1
+    name: mariadb-100-rhel7
+  spec:
+    tags:
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: 172.30.47.169:5000/rhscl/mariadb-100-rhel7:10.0
+      generation: 1
+      importPolicy: {}
+      name: "10.0"
+      referencePolicy:
+        type: Source
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: 172.30.47.169:5000/rhscl/mariadb-100-rhel7:10.0-11
+      generation: 1
+      importPolicy: {}
+      name: 10.0-11
+      referencePolicy:
+        type: Source
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: 172.30.47.169:5000/rhscl/mariadb-100-rhel7:10.0-12
+      generation: 1
+      importPolicy: {}
+      name: 10.0-12
+      referencePolicy:
+        type: Source
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: 172.30.47.169:5000/rhscl/mariadb-100-rhel7:10.0-13
+      generation: 1
+      importPolicy: {}
+      name: 10.0-13
+      referencePolicy:
+        type: Source
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: 172.30.47.169:5000/rhscl/mariadb-100-rhel7:latest
+      generation: 1
+      importPolicy: {}
+      name: latest
+      referencePolicy:
+        type: Source
+  status:
+    dockerImageRepository: ""
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    annotations:
+      openshift.io/image.dockerRepositoryCheck: 2017-05-18T10:06:54Z
+    creationTimestamp: null
+    generation: 1
+    name: mariadb-101-rhel7
+  spec:
+    tags:
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: 172.30.47.169:5000/rhscl/mariadb-101-rhel7:10.1
+      generation: 1
+      importPolicy: {}
+      name: "10.1"
+      referencePolicy:
+        type: Source
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: 172.30.47.169:5000/rhscl/mariadb-101-rhel7:10.1-3
+      generation: 1
+      importPolicy: {}
+      name: 10.1-3
+      referencePolicy:
+        type: Source
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: 172.30.47.169:5000/rhscl/mariadb-101-rhel7:10.1-3.1
+      generation: 1
+      importPolicy: {}
+      name: 10.1-3.1
+      referencePolicy:
+        type: Source
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: 172.30.47.169:5000/rhscl/mariadb-101-rhel7:10.1-3.11
+      generation: 1
+      importPolicy: {}
+      name: 10.1-3.11
+      referencePolicy:
+        type: Source
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: 172.30.47.169:5000/rhscl/mariadb-101-rhel7:latest
+      generation: 1
+      importPolicy: {}
+      name: latest
+      referencePolicy:
+        type: Source
+  status:
+    dockerImageRepository: ""
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    annotations:
+      openshift.io/image.dockerRepositoryCheck: 2017-05-18T10:04:21Z
+    creationTimestamp: null
+    generation: 1
+    name: mongodb-26-rhel7
+  spec:
+    tags:
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: 172.30.47.169:5000/rhscl/mongodb-26-rhel7:2.6
+      generation: 1
+      importPolicy: {}
+      name: "2.6"
+      referencePolicy:
+        type: Source
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: 172.30.47.169:5000/rhscl/mongodb-26-rhel7:2.6-6
+      generation: 1
+      importPolicy: {}
+      name: 2.6-6
+      referencePolicy:
+        type: Source
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: 172.30.47.169:5000/rhscl/mongodb-26-rhel7:2.6-7
+      generation: 1
+      importPolicy: {}
+      name: 2.6-7
+      referencePolicy:
+        type: Source
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: 172.30.47.169:5000/rhscl/mongodb-26-rhel7:2.6-8
+      generation: 1
+      importPolicy: {}
+      name: 2.6-8
+      referencePolicy:
+        type: Source
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: 172.30.47.169:5000/rhscl/mongodb-26-rhel7:latest
+      generation: 1
+      importPolicy: {}
+      name: latest
+      referencePolicy:
+        type: Source
+  status:
+    dockerImageRepository: ""
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    annotations:
+      openshift.io/image.dockerRepositoryCheck: 2017-05-18T10:06:33Z
+    creationTimestamp: null
+    generation: 1
+    name: mongodb-32-rhel7
+  spec:
+    tags:
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: 172.30.47.169:5000/rhscl/mongodb-32-rhel7:3.2
+      generation: 1
+      importPolicy: {}
+      name: "3.2"
+      referencePolicy:
+        type: Source
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: 172.30.47.169:5000/rhscl/mongodb-32-rhel7:3.2-3.2
+      generation: 1
+      importPolicy: {}
+      name: 3.2-3.2
+      referencePolicy:
+        type: Source
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: 172.30.47.169:5000/rhscl/mongodb-32-rhel7:3.2-3.3
+      generation: 1
+      importPolicy: {}
+      name: 3.2-3.3
+      referencePolicy:
+        type: Source
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: 172.30.47.169:5000/rhscl/mongodb-32-rhel7:3.2-3.4
+      generation: 1
+      importPolicy: {}
+      name: 3.2-3.4
+      referencePolicy:
+        type: Source
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: 172.30.47.169:5000/rhscl/mongodb-32-rhel7:latest
+      generation: 1
+      importPolicy: {}
+      name: latest
+      referencePolicy:
+        type: Source
+  status:
+    dockerImageRepository: ""
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    annotations:
+      openshift.io/image.dockerRepositoryCheck: 2017-05-18T10:09:27Z
+    creationTimestamp: null
+    generation: 1
+    name: mysql-57-rhel7
+  spec:
+    tags:
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: 172.30.47.169:5000/rhscl/mysql-57-rhel7:5.7
+      generation: 1
+      importPolicy: {}
+      name: "5.7"
+      referencePolicy:
+        type: Source
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: 172.30.47.169:5000/rhscl/mysql-57-rhel7:5.7-3.0
+      generation: 1
+      importPolicy: {}
+      name: 5.7-3.0
+      referencePolicy:
+        type: Source
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: 172.30.47.169:5000/rhscl/mysql-57-rhel7:5.7-3.1
+      generation: 1
+      importPolicy: {}
+      name: 5.7-3.1
+      referencePolicy:
+        type: Source
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: 172.30.47.169:5000/rhscl/mysql-57-rhel7:5.7-3.3
+      generation: 1
+      importPolicy: {}
+      name: 5.7-3.3
+      referencePolicy:
+        type: Source
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: 172.30.47.169:5000/rhscl/mysql-57-rhel7:latest
+      generation: 1
+      importPolicy: {}
+      name: latest
+      referencePolicy:
+        type: Source
+  status:
+    dockerImageRepository: ""
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    annotations:
+      openshift.io/image.dockerRepositoryCheck: 2017-05-18T10:07:31Z
+    creationTimestamp: null
+    generation: 1
+    name: nodejs-6-rhel7
+  spec:
+    tags:
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: 172.30.47.169:5000/rhscl/nodejs-6-rhel7:6
+      generation: 1
+      importPolicy: {}
+      name: "6"
+      referencePolicy:
+        type: Source
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: 172.30.47.169:5000/rhscl/nodejs-6-rhel7:6-14.1
+      generation: 1
+      importPolicy: {}
+      name: 6-14.1
+      referencePolicy:
+        type: Source
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: 172.30.47.169:5000/rhscl/nodejs-6-rhel7:latest
+      generation: 1
+      importPolicy: {}
+      name: latest
+      referencePolicy:
+        type: Source
+  status:
+    dockerImageRepository: ""
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    annotations:
+      openshift.io/image.dockerRepositoryCheck: 2017-05-18T10:05:58Z
+    creationTimestamp: null
+    generation: 1
+    name: php-56-rhel7
+  spec:
+    tags:
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: 172.30.47.169:5000/rhscl/php-56-rhel7:5.6
+      generation: 1
+      importPolicy: {}
+      name: "5.6"
+      referencePolicy:
+        type: Source
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: 172.30.47.169:5000/rhscl/php-56-rhel7:5.6-12
+      generation: 1
+      importPolicy: {}
+      name: 5.6-12
+      referencePolicy:
+        type: Source
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: 172.30.47.169:5000/rhscl/php-56-rhel7:5.6-13
+      generation: 1
+      importPolicy: {}
+      name: 5.6-13
+      referencePolicy:
+        type: Source
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: 172.30.47.169:5000/rhscl/php-56-rhel7:5.6-14
+      generation: 1
+      importPolicy: {}
+      name: 5.6-14
+      referencePolicy:
+        type: Source
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: 172.30.47.169:5000/rhscl/php-56-rhel7:latest
+      generation: 1
+      importPolicy: {}
+      name: latest
+      referencePolicy:
+        type: Source
+  status:
+    dockerImageRepository: ""
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    annotations:
+      openshift.io/image.dockerRepositoryCheck: 2017-05-18T10:08:24Z
+    creationTimestamp: null
+    generation: 1
+    name: php-70-rhel7
+  spec:
+    tags:
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: 172.30.47.169:5000/rhscl/php-70-rhel7:7.0
+      generation: 1
+      importPolicy: {}
+      name: "7.0"
+      referencePolicy:
+        type: Source
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: 172.30.47.169:5000/rhscl/php-70-rhel7:7.0-5.0
+      generation: 1
+      importPolicy: {}
+      name: 7.0-5.0
+      referencePolicy:
+        type: Source
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: 172.30.47.169:5000/rhscl/php-70-rhel7:7.0-5.2
+      generation: 1
+      importPolicy: {}
+      name: 7.0-5.2
+      referencePolicy:
+        type: Source
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: 172.30.47.169:5000/rhscl/php-70-rhel7:7.0-5.4
+      generation: 1
+      importPolicy: {}
+      name: 7.0-5.4
+      referencePolicy:
+        type: Source
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: 172.30.47.169:5000/rhscl/php-70-rhel7:latest
+      generation: 1
+      importPolicy: {}
+      name: latest
+      referencePolicy:
+        type: Source
+  status:
+    dockerImageRepository: ""
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    annotations:
+      openshift.io/image.dockerRepositoryCheck: 2017-05-18T10:06:16Z
+    creationTimestamp: null
+    generation: 1
+    name: python-34-rhel7
+  spec:
+    tags:
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: 172.30.47.169:5000/rhscl/python-34-rhel7:3.4
+      generation: 1
+      importPolicy: {}
+      name: "3.4"
+      referencePolicy:
+        type: Source
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: 172.30.47.169:5000/rhscl/python-34-rhel7:3.4-11
+      generation: 1
+      importPolicy: {}
+      name: 3.4-11
+      referencePolicy:
+        type: Source
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: 172.30.47.169:5000/rhscl/python-34-rhel7:3.4-12
+      generation: 1
+      importPolicy: {}
+      name: 3.4-12
+      referencePolicy:
+        type: Source
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: 172.30.47.169:5000/rhscl/python-34-rhel7:3.4-13
+      generation: 1
+      importPolicy: {}
+      name: 3.4-13
+      referencePolicy:
+        type: Source
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: 172.30.47.169:5000/rhscl/python-34-rhel7:latest
+      generation: 1
+      importPolicy: {}
+      name: latest
+      referencePolicy:
+        type: Source
+  status:
+    dockerImageRepository: ""
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    annotations:
+      openshift.io/image.dockerRepositoryCheck: 2017-05-16T19:37:23Z
+    creationTimestamp: null
+    generation: 2
+    name: python-35-rhel7
+  spec:
+    dockerImageRepository: registry.access.redhat.com/rhscl/python-35-rhel7
+    tags:
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/rhscl/python-35-rhel7:3.5
+      generation: 2
+      importPolicy: {}
+      name: "3.5"
+      referencePolicy:
+        type: Source
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/rhscl/python-35-rhel7:3.5-16
+      generation: 2
+      importPolicy: {}
+      name: 3.5-16
+      referencePolicy:
+        type: Source
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/rhscl/python-35-rhel7:3.5-16.1
+      generation: 2
+      importPolicy: {}
+      name: 3.5-16.1
+      referencePolicy:
+        type: Source
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/rhscl/python-35-rhel7:3.5-16.2
+      generation: 2
+      importPolicy: {}
+      name: 3.5-16.2
+      referencePolicy:
+        type: Source
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/rhscl/python-35-rhel7:latest
+      generation: 2
+      importPolicy: {}
+      name: latest
+      referencePolicy:
+        type: Source
+  status:
+    dockerImageRepository: ""
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    annotations:
+      openshift.io/image.dockerRepositoryCheck: 2017-05-18T10:09:01Z
+    creationTimestamp: null
+    generation: 1
+    name: redis-32-rhel7
+  spec:
+    tags:
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: 172.30.47.169:5000/rhscl/redis-32-rhel7:3.2
+      generation: 1
+      importPolicy: {}
+      name: "3.2"
+      referencePolicy:
+        type: Source
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: 172.30.47.169:5000/rhscl/redis-32-rhel7:3.2-5.0
+      generation: 1
+      importPolicy: {}
+      name: 3.2-5.0
+      referencePolicy:
+        type: Source
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: 172.30.47.169:5000/rhscl/redis-32-rhel7:3.2-5.1
+      generation: 1
+      importPolicy: {}
+      name: 3.2-5.1
+      referencePolicy:
+        type: Source
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: 172.30.47.169:5000/rhscl/redis-32-rhel7:3.2-5.3
+      generation: 1
+      importPolicy: {}
+      name: 3.2-5.3
+      referencePolicy:
+        type: Source
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: 172.30.47.169:5000/rhscl/redis-32-rhel7:latest
+      generation: 1
+      importPolicy: {}
+      name: latest
+      referencePolicy:
+        type: Source
+  status:
+    dockerImageRepository: ""
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    annotations:
+      openshift.io/image.dockerRepositoryCheck: 2017-05-18T10:05:33Z
+    creationTimestamp: null
+    generation: 1
+    name: ruby-22-rhel7
+  spec:
+    tags:
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: 172.30.47.169:5000/rhscl/ruby-22-rhel7:2.2
+      generation: 1
+      importPolicy: {}
+      name: "2.2"
+      referencePolicy:
+        type: Source
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: 172.30.47.169:5000/rhscl/ruby-22-rhel7:2.2-10
+      generation: 1
+      importPolicy: {}
+      name: 2.2-10
+      referencePolicy:
+        type: Source
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: 172.30.47.169:5000/rhscl/ruby-22-rhel7:2.2-11
+      generation: 1
+      importPolicy: {}
+      name: 2.2-11
+      referencePolicy:
+        type: Source
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: 172.30.47.169:5000/rhscl/ruby-22-rhel7:2.2-12
+      generation: 1
+      importPolicy: {}
+      name: 2.2-12
+      referencePolicy:
+        type: Source
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: 172.30.47.169:5000/rhscl/ruby-22-rhel7:latest
+      generation: 1
+      importPolicy: {}
+      name: latest
+      referencePolicy:
+        type: Source
+  status:
+    dockerImageRepository: ""
+kind: List
+metadata: {}
