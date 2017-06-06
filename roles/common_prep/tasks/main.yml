@@ -7,5 +7,6 @@
   when: local_repos
 
 - name: Update all packages
+  serial: 2
   yum: name=* state=latest
 
