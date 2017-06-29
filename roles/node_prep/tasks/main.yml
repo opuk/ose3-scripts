@@ -16,7 +16,7 @@
 - name: make sure NetworkManager is started and enabled
   service:
     name: NetworkManager
-    state: running
+    state: started
     enabled: yes
 
 - name: Check if docker storage has been set up.
