@@ -1,4 +1,9 @@
-#!/bin/bash 
+#!/bin/bash
+
+if ! [ -x "/usr/bin/skopeo" ]; then
+  echo 'Error: skopeo is not installed. It is available in rhel-7-server-extras-rpms.'
+  exit 1
+fi
 
 OSE_VERS=3.6
 UPSTREAM_REGISTRY=registry.access.redhat.com
@@ -8,7 +13,7 @@ DEST_REGISTRY_SECURE=false
 
 CMD="skopeo copy --dest-tls-verify=$DEST_REGISTRY_SECURE docker://$UPSTREAM_REGISTRY/$i docker://$REGISTRY/$i"
 
-se_images="
+ose_images="
   openshift3/ose-deployer
   openshift3/ose-docker-builder
   openshift3/ose-docker-registry
@@ -69,6 +74,7 @@ for img in $ose_images $ose_images_cont; do
   tags="$tags $(printf %s\\n $avail | grep ^v | grep -v -- - | tail -n 1)"
   tags="$tags $(printf %s\\n $avail | grep -v ^v | grep -v -- - | tail -n 1)"
   tags="$(echo $tags | tr ' ' '\n' | sort -u)"
+  echo -n "Tags to sync: "
   echo $tags
   for tag in $tags; do
     echo "Syncing $img:$tag"
