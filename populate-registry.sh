@@ -11,8 +11,6 @@ REGISTRY=docker-distribution.example.com:5000
 
 DEST_REGISTRY_SECURE=false
 
-CMD="skopeo copy --dest-tls-verify=$DEST_REGISTRY_SECURE docker://$UPSTREAM_REGISTRY/$i docker://$REGISTRY/$i"
-
 ose_images="
   openshift3/ose-deployer
   openshift3/ose-docker-builder
