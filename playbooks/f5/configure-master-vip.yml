@@ -1,0 +1,65 @@
+---
+#This playbook configures 2 virtual servers, one public and one internal
+- hosts: localhost
+  gather_facts: false
+  tasks:
+
+  - include_vars: f5_vars.yml
+
+  - name: Configure nodes
+    bigip_node:
+      server: "{{ f5_mgmt_host }}"
+      user: "{{ f5_user }}"
+      password: "{{ f5_password }}"
+      state: "{{ f5_state | default('present') }}"
+      partition: "{{ f5_partition | default('Common') }}"
+      host: "{{ item.host }}"
+      name: "{{ item.name }}"
+    with_items:
+      - "{{ masters }}"
+
+  - name: Create pool
+    bigip_pool:
+      server: "{{ f5_mgmt_host }}"
+      user: "{{ f5_user }}"
+      password: "{{ f5_password }}"
+      state: "{{ f5_state | default('present') }}"
+      name: openshift-master-pool
+      partition: "{{ f5_partition | default('Common') }}"
+      host: "{{ item.name }}"
+      port: 8443
+      monitors:
+        - /Common/https
+    delegate_to: localhost
+    with_items:
+      - "{{ masters }}"
+
+  - name: Create public VIP
+    bigip_virtual_server:
+      server: "{{ f5_mgmt_host }}"
+      user: "{{ f5_user }}"
+      password: "{{ f5_password }}"
+      state: "{{ f5_state | default('present') }}"
+      description: "OpenShift public VIP"
+      destination: "{{ public_vip }}"
+      partition: "{{ f5_partition | default('Common') }}"
+      name: openshift-public-vip
+      port: 8443
+      pool: openshift-master-pool
+      snat: "Automap"
+    delegate_to: localhost
+
+  - name: Create internal VIP
+    bigip_virtual_server:
+      server: "{{ f5_mgmt_host }}"
+      user: "{{ f5_user }}"
+      password: "{{ f5_password }}"
+      state: "{{ f5_state | default('present') }}"
+      description: "OpenShift internal VIP"
+      destination: "{{ internal_vip }}"
+      partition: "{{ f5_partition | default('Common') }}"
+      name: openshift-internal-vip
+      port: 8443
+      pool: openshift-master-pool
+      snat: "Automap"
+    delegate_to: localhost

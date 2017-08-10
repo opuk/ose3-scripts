@@ -1,0 +1,28 @@
+---
+f5_mgmt_host: f5.example.com
+f5_user: openshift-admin
+f5_password: redhat123
+f5_partition: OpenShift
+
+public_vip: 192.168.200.5
+internal_vip: 192.168.100.5
+
+public_app_vip: 192.168.200.100
+
+masters:
+ - host: 192.168.100.171
+   name: master1.example.com
+ - host: 192.168.100.131
+   name: master2.example.com
+ - host: 192.168.100.174
+   name: master3.example.com
+
+infra_nodes:
+ - host: 192.168.100.169
+   name: infra1.example.com
+ - host: 192.168.100.210
+   name: infra2.example.com
+ - host: 192.168.100.154
+   name: infra3.example.com
+
+

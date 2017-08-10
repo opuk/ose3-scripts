@@ -1,0 +1,69 @@
+### FACTORY RESET
+load sys config default
+save sys config
+###
+create auth partition OpenShift 
+
+create auth user openshift-admin description "OpenShift admin account" prompt-for-password partition-access add { all-partitions { role admin } } shell bash
+
+#delete default router if deployed
+oc delete all -l router=router
+
+
+oc adm policy remove-scc-from-user hostnetwork -z router
+oc adm policy add-scc-to-user privileged -z router
+
+ssh-keygen....
+
+cat > f5-hostsubnet.yaml << EOF
+{
+    "kind": "HostSubnet",
+    "apiVersion": "v1",
+    "metadata": {
+        "name": "openshift-f5-node",
+        "annotations": {
+        "pod.network.openshift.io/assign-subnet": "true",
+	"pod.network.openshift.io/fixed-vnid-host": "0"  
+        }
+    },
+    "host": "openshift-f5-node",
+    "hostIP": "192.168.100.5"  
+} 
+EOF
+
+[cloud-user@master1 ~]$ oc create -f f5-hostsubnet.yaml 
+hostsubnet "openshift-f5-node" created
+[cloud-user@master1 ~]$ oc get hostsubnets
+NAME                  HOST                  HOST IP           SUBNET
+infra1.example.com    infra1.example.com    192.168.100.169   10.130.2.0/23
+infra2.example.com    infra2.example.com    192.168.100.210   10.128.4.0/23
+infra3.example.com    infra3.example.com    192.168.100.154   10.131.2.0/23
+master1.example.com   master1.example.com   192.168.100.171   10.128.0.0/23
+master2.example.com   master2.example.com   192.168.100.131   10.129.0.0/23
+master3.example.com   master3.example.com   192.168.100.174   10.130.0.0/23
+node1.example.com     node1.example.com     192.168.100.177   10.128.2.0/23
+node2.example.com     node2.example.com     192.168.100.198   10.131.0.0/23
+node3.example.com     node3.example.com     192.168.100.170   10.129.2.0/23
+>>> openshift-f5-node     openshift-f5-node     192.168.100.5     10.129.4.0/23
+
+
+
+oadm policy add-cluster-role-to-user system:sdn-reader system:serviceaccount:default:router
+
+oadm router \
+    --type=f5-router \
+    --external-host=f5.example.com \
+    --external-host-username=openshift-admin \
+    --external-host-password=redhat123 \
+    --external-host-http-vserver=openshift-app-http-vip \
+    --external-host-https-vserver=openshift-app-https-vip \
+    --external-host-private-key=$HOME/.ssh/id_rsa \
+    --host-network=false \
+    --service-account=router \
+    --external-host-partition-path=/Common \
+    --external-host-insecure=true \
+    --images=docker-registry-default.registry.example.com/openshift3/ose-f5-router:v3.5 \
+    --external-host-internal-ip=192.168.100.5 \
+    --external-host-vxlan-gw=10.129.4.5/14
+
+cert?

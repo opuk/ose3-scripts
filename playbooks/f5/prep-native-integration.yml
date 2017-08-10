@@ -1,0 +1,41 @@
+#This prepares an F5 appliance to be used with the F5 router plug-in.
+#
+---
+- hosts: localhost
+  gather_facts: false
+  tasks:
+
+  - include_vars: f5_vars.yml
+
+  - name: Create http app VIP
+    bigip_virtual_server:
+      server: "{{ f5_mgmt_host }}"
+      user: "{{ f5_user }}"
+      password: "{{ f5_password }}"
+      state: "{{ f5_state | default('present') }}"
+      description: "OpenShift application http VIP"
+      destination: "{{ public_app_vip }}"
+      partition: "{{ f5_partition }}"
+      name: openshift-app-http-vip
+      port: 80
+      snat: "Automap"
+      all_profiles:
+        - /Common/http
+    delegate_to: localhost
+
+  - name: Create https app VIP
+    bigip_virtual_server:
+      server: "{{ f5_mgmt_host }}"
+      user: "{{ f5_user }}"
+      password: "{{ f5_password }}"
+      state: "{{ f5_state | default('present') }}"
+      description: "OpenShift application https VIP"
+      destination: "{{ public_app_vip }}"
+      partition: "{{ f5_partition }}"
+      name: openshift-app-https-vip
+      port: 443
+      snat: "Automap"
+      all_profiles:
+        - /Common/http
+        - /Common/clientssl
+    delegate_to: localhost

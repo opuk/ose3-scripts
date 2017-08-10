@@ -1,0 +1,82 @@
+---
+#This playbook configures vips for the default OpenShift router
+- hosts: localhost
+  gather_facts: false
+  tasks:
+
+  - include_vars: f5_vars.yml
+
+  - name: Configure nodes
+    bigip_node:
+      server: "{{ f5_mgmt_host }}"
+      user: "{{ f5_user }}"
+      password: "{{ f5_password }}"
+      state: "{{ f5_state | default('present') }}"
+      partition: "{{ f5_partition | default('Common') }}"
+      host: "{{ item.host }}"
+      name: "{{ item.name }}"
+    with_items:
+      - "{{ infra_nodes }}"
+
+  - name: Create pool
+    bigip_pool:
+      server: "{{ f5_mgmt_host }}"
+      user: "{{ f5_user }}"
+      password: "{{ f5_password }}"
+      state: "{{ f5_state | default('present') }}"
+      name: openshift-app-pool-http
+      partition: "{{ f5_partition | default('Common') }}"
+      host: "{{ item.name }}"
+      port: 80
+      monitors:
+        - /Common/http
+    delegate_to: localhost
+    with_items:
+      - "{{ infra_nodes }}"
+
+  - name: Create pool
+    bigip_pool:
+      server: "{{ f5_mgmt_host }}"
+      user: "{{ f5_user }}"
+      password: "{{ f5_password }}"
+      state: "{{ f5_state | default('present') }}"
+      name: openshift-app-pool-https
+      partition: "{{ f5_partition | default('Common') }}"
+      host: "{{ item.name }}"
+      port: 443
+      monitors:
+        - /Common/https
+    delegate_to: localhost
+    with_items:
+      - "{{ infra_nodes }}"
+
+  - name: Create public VIP port 80
+    bigip_virtual_server:
+      server: "{{ f5_mgmt_host }}"
+      user: "{{ f5_user }}"
+      password: "{{ f5_password }}"
+      state: "{{ f5_state | default('present') }}"
+      description: "OpenShift public VIP"
+      destination: "{{ public_app_vip }}"
+      partition: "{{ f5_partition | default('Common') }}"
+      name: openshift-public-vip-http
+      port: 80
+      pool: openshift-app-pool-http
+      snat: "Automap"
+    delegate_to: localhost
+
+  - name: Create public VIP port 443
+    bigip_virtual_server:
+      server: "{{ f5_mgmt_host }}"
+      user: "{{ f5_user }}"
+      password: "{{ f5_password }}"
+      state: "{{ f5_state | default('present') }}"
+      description: "OpenShift public VIP"
+      destination: "{{ public_app_vip }}"
+      partition: "{{ f5_partition | default('Common') }}"
+      name: openshift-public-vip-https
+      port: 443
+      pool: openshift-app-pool-https
+      snat: "Automap"
+    delegate_to: localhost
+
