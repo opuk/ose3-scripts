@@ -1,26 +1,113 @@
-#!/bin/bash
+#!/bin/bash 
 
+OSE_VERS=3.6
 UPSTREAM_REGISTRY=registry.access.redhat.com
-REGISTRY=registry.example.com:5000
+REGISTRY=docker-distribution.example.com:5000
 
-upstream_repos=( openshift3/ose-deployer openshift3/ose-docker-registry openshift3/ose-pod openshift3/ose-docker-builder openshift3/ose-sti-builder openshift3/ose-haproxy-router openshift3/mongodb-24-rhel7 openshift3/mysql-55-rhel7 openshift3/nodejs-010-rhel7 openshift3/perl-516-rhel7 openshift3/php-55-rhel7 openshift3/postgresql-92-rhel7 openshift3/python-33-rhel7 openshift3/ruby-20-rhel7 openshift3/logging-deployment openshift3/logging-elasticsearch openshift3/logging-kibana openshift3/logging-fluentd openshift3/logging-auth-proxy openshift3/metrics-deployer openshift3/metrics-hawkular-metrics openshift3/metrics-cassandra openshift3/metrics-heapster openshift3/jenkins-1-rhel7 openshift3/image-inspector openshift3/ose-recycler )
-#upstream_repos=( openshift3/ose-deployer openshift3/ose-docker-registry openshift3/ose-pod openshift3/ose-docker-builder openshift3/ose-sti-builder openshift3/ose-haproxy-router )
+DEST_REGISTRY_SECURE=false
 
-#xpaas_repos=( jboss-amq-6/amq-openshift jboss-eap-6/eap-openshift jboss-webserver-3/tomcat7-openshift jboss-webserver-3/tomcat8-openshift )
+CMD="skopeo copy --dest-tls-verify=$DEST_REGISTRY_SECURE docker://$UPSTREAM_REGISTRY/$i docker://$REGISTRY/$i"
 
-for i in ${upstream_repos[@]}; do
-  docker pull -a $UPSTREAM_REGISTRY/$i
+upstream_repos=(  openshift3/ose-deployer
+                  openshift3/ose-docker-builder
+                  openshift3/ose-docker-registry
+                  openshift3/ose-haproxy-router
+                  openshift3/ose-pod
+                  openshift3/ose-sti-builder
+                  
+                  rhel7/cockpit
+                  rhel7/etcd
+                  openshift3/ose
+                  openshift3/node
+                  openshift3/openvswitch
+
+                  openshift3/registry-console
+
+                  openshift3/logging-auth-proxy
+                  openshift3/logging-curator
+                  openshift3/logging-elasticsearch
+                  openshift3/logging-fluentd
+                  openshift3/logging-kibana
+                  openshift3/metrics-cassandra
+                  openshift3/metrics-hawkular-metrics
+                  openshift3/metrics-heapster
+                  
+                  openshift3/ose-egress-router
+                  openshift3/ose-keepalived-ipfailover
+                  openshift3/ose-recycler
+                  openshift3/image-inspector
+        )
+ose_images="
+  openshift3/ose-deployer
+  openshift3/ose-docker-builder
+  openshift3/ose-docker-registry
+  openshift3/ose-haproxy-router
+  openshift3/ose-pod
+  openshift3/ose-sti-builder
+  openshift3/registry-console
+  openshift3/logging-auth-proxy
+  openshift3/logging-curator
+  openshift3/logging-elasticsearch
+  openshift3/logging-fluentd
+  openshift3/logging-kibana
+  openshift3/metrics-cassandra
+  openshift3/metrics-hawkular-metrics
+  openshift3/metrics-heapster
+"
+
+ose_images_cont="
+  rhel7/cockpit
+  rhel7/etcd
+  openshift3/ose
+  openshift3/node
+  openshift3/openvswitch
+"
+
+ose_images_opt="
+  openshift3/ose-egress-router
+  openshift3/ose-keepalived-ipfailover
+  openshift3/ose-recycler
+  openshift3/image-inspector
+"
+
+xpaas_images="
+  redhat-openjdk-18/openjdk18-openshift
+  jboss-webserver-3/webserver30-tomcat8-openshift
+  jboss-eap-7/eap70-openshift
+  redhat-sso-7/sso70-openshift
+  rhscl/postgresql-95-rhel7
+"
+
+jenkins_images="
+  openshift3/jenkins-2-rhel7
+  openshift3/jenkins-slave-base-rhel7
+  openshift3/jenkins-slave-maven-rhel7
+  openshift3/jenkins-slave-nodejs-rhel7
+"
+
+# Pull
+for img in $ose_images $ose_images_cont; do
+  avail="$(curl -s https://$UPSTREAM_REGISTRY/v1/repositories/$img/tags | grep -Po '"v?'${OSE_VERS/\./\\.}'.*?"' | tr -d '"' | sort -V)"
+  # rhel7/etcd has its own versioning
+  [ "$img" = "rhel7/etcd" ] && skopeo copy --dest-tls-verify=$DEST_REGISTRY_SECURE docker://$UPSTREAM_REGISTRY/$img docker://$REGISTRY/$img
+  [ -n "$avail" ] || continue
+  # Get latest images with and without v in the tag / patch level
+  tags=""
+  tags="$tags $(printf %s\\n $avail | grep ^v | tail -n 1)"
+  tags="$tags $(printf %s\\n $avail | grep -v ^v | tail -n 1)"
+  tags="$tags $(printf %s\\n $avail | grep ^v | grep -v -- - | tail -n 1)"
+  tags="$tags $(printf %s\\n $avail | grep -v ^v | grep -v -- - | tail -n 1)"
+  tags="$(echo $tags | tr ' ' '\n' | sort -u)"
+  echo $tags
+  for tag in $tags; do
+    echo "Syncing $img:$tag"
+    skopeo copy --dest-tls-verify=$DEST_REGISTRY_SECURE docker://$UPSTREAM_REGISTRY/$img:$tag docker://$REGISTRY/$img:$tag
+  done
 done
 
-for IMAGE in $(docker images |grep $UPSTREAM_REGISTRY|awk '{print $1}'|sort -u) 
-do
-  echo $IMAGE
-  NEW_IMAGE=$(echo ${IMAGE}|sed "s/$UPSTREAM_REGISTRY/$REGISTRY/")
+exit 0
 
-  for IMAGE_TAG in $(docker images | grep $IMAGE |awk '{print $2}'|sort -u)
-  do
-    echo $IMAGE_TAG
-    docker tag ${IMAGE}:${IMAGE_TAG} ${NEW_IMAGE}:${IMAGE_TAG}
-    docker push ${NEW_IMAGE}:${IMAGE_TAG}
-  done
+for img in $xpaas_images $jenkins_images; do
+  # Latest only
+  skopeo copy --dest-tls-verify=$DEST_REGISTRY_SECURE docker://$UPSTREAM_REGISTRY/$img docker://$REGISTRY/$img
 done
