@@ -8,36 +8,7 @@ DEST_REGISTRY_SECURE=false
 
 CMD="skopeo copy --dest-tls-verify=$DEST_REGISTRY_SECURE docker://$UPSTREAM_REGISTRY/$i docker://$REGISTRY/$i"
 
-upstream_repos=(  openshift3/ose-deployer
-                  openshift3/ose-docker-builder
-                  openshift3/ose-docker-registry
-                  openshift3/ose-haproxy-router
-                  openshift3/ose-pod
-                  openshift3/ose-sti-builder
-                  
-                  rhel7/cockpit
-                  rhel7/etcd
-                  openshift3/ose
-                  openshift3/node
-                  openshift3/openvswitch
-
-                  openshift3/registry-console
-
-                  openshift3/logging-auth-proxy
-                  openshift3/logging-curator
-                  openshift3/logging-elasticsearch
-                  openshift3/logging-fluentd
-                  openshift3/logging-kibana
-                  openshift3/metrics-cassandra
-                  openshift3/metrics-hawkular-metrics
-                  openshift3/metrics-heapster
-                  
-                  openshift3/ose-egress-router
-                  openshift3/ose-keepalived-ipfailover
-                  openshift3/ose-recycler
-                  openshift3/image-inspector
-        )
-ose_images="
+se_images="
   openshift3/ose-deployer
   openshift3/ose-docker-builder
   openshift3/ose-docker-registry
