@@ -1,0 +1,15 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: regpv
+spec:
+  accessModes:
+    - ReadWriteOnce
+  capacity:
+    storage: "10Gi"
+  hostPath:
+    path: "/opt/regpv"
+  resources:
+    requests:
+      storage: 10Gi
+

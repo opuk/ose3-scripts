@@ -1,0 +1,2 @@
+oc create -f regpv.yml
+oc set volume dc/docker-registry --add --type=pvc --path=/opt/regpv --name=registry-storage --mount-path=/registry --claim-size=5Gi --overwrite
