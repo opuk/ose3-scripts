@@ -50,6 +50,7 @@ xpaas_images="
   jboss-eap-7/eap70-openshift
   redhat-sso-7/sso70-openshift
   rhscl/postgresql-95-rhel7
+  rhscl/nodejs-4-rhel7
 "
 
 jenkins_images="
