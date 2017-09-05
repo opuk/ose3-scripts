@@ -40,7 +40,6 @@ ose_images_cont="
 ose_images_opt="
   openshift3/ose-egress-router
   openshift3/ose-keepalived-ipfailover
-  openshift3/ose-recycler
   openshift3/image-inspector
 "
 
