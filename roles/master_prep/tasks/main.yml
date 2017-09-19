@@ -1,9 +1,9 @@
 ---
 # tasks file for master_prep
-- name: create /etc/origin
+- name: create /etc/origin/master
   file:
     state: directory
-    path: /etc/origin
+    path: /etc/origin/master
 
 - name: Check if CA cert is present
   local_action: stat path=/root/ca.crt
