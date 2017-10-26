@@ -4,14 +4,12 @@
   file:
     state: directory
     path: /etc/origin/master
+  when: idmserver is defined
 
-- name: Check if CA cert is present
-  local_action: stat path=/root/ca.crt
-  register: ca_file
-
-- name: Copy CA certificate
-  copy:
-    src: /root/ca.crt
+- name: copy CA certificate from IdM server
+  get_url:
+    url: https://{{idmserver}}/ipa/config/ca.crt
     dest: /etc/origin/ipa.crt
-  when: ca_file.stat.exists
+  when: idmserver is defined
+
 
