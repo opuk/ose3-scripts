@@ -1,28 +1,28 @@
 ---
-f5_mgmt_host: f5.example.com
+f5_mgmt_host: f5.lab.kupo.se
 f5_user: openshift-admin
 f5_password: redhat123
 f5_partition: OpenShift
 
-public_vip: 192.168.200.5
-internal_vip: 192.168.100.5
+public_vip: 10.2.0.100
+internal_vip: 10.1.0.99
 
-public_app_vip: 192.168.200.100
+public_app_vip: 10.2.0.101
 
 masters:
- - host: 192.168.100.197
-   name: master1.example.com
- - host: 192.168.100.234
-   name: master2.example.com
- - host: 192.168.100.236
-   name: master3.example.com
+ - host: 10.1.0.132
+   name: master1.lab.kupo.se
+ - host: 10.1.0.137
+   name: master2.lab.kupo.se
+ - host: 10.1.0.141
+   name: master3.lab.kupo.se
 
 infra_nodes:
- - host: 192.168.100.217
-   name: infra1.example.com
- - host: 192.168.100.245
-   name: infra2.example.com
- - host: 192.168.100.203
-   name: infra3.example.com
+ - host: 10.1.0.143
+   name: infra1.lab.kupo.se
+ - host: 10.1.0.145
+   name: infra2.lab.kupo.se
+ - host: 10.1.0.147
+   name: infra3.lab.kupo.se
 
 

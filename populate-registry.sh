@@ -5,11 +5,11 @@ if ! [ -x "/usr/bin/skopeo" ]; then
   exit 1
 fi
 
-OSE_VERS=3.6
+OSE_VERS=3.7
 UPSTREAM_REGISTRY=registry.access.redhat.com
-REGISTRY=docker-distribution.example.com:5000
+REGISTRY=registry.example.com:5000
 
-DEST_REGISTRY_SECURE=false
+DEST_REGISTRY_SECURE=true
 
 ose_images="
   openshift3/ose-deployer
@@ -27,6 +27,12 @@ ose_images="
   openshift3/metrics-cassandra
   openshift3/metrics-hawkular-metrics
   openshift3/metrics-heapster
+  openshift3/container-engine
+  openshift3/ose-cluster-capacity
+  openshift3/ose-ansible
+  openshift3/prometheus
+  openshift3/prometheus-alert-buffer
+  openshift3/prometheus-alertmanager
 "
 
 ose_images_cont="
@@ -59,6 +65,13 @@ jenkins_images="
   openshift3/jenkins-slave-nodejs-rhel7
 "
 
+gluster_images="
+  rhgs3/rhgs-volmanager-rhel7
+  rhgs3/rhgs-server-rhel7
+  rhgs3/rhgs-gluster-block-prov-rhel7
+  rhgs3/rhgs-s3-server-rhel7
+"
+
 # Pull
 for img in $ose_images $ose_images_cont; do
   avail="$(curl -s https://$UPSTREAM_REGISTRY/v1/repositories/$img/tags | grep -Po '"v?'${OSE_VERS/\./\\.}'.*?"' | tr -d '"' | sort -V)"
@@ -83,7 +96,7 @@ done
 
 exit 0
 
-for img in $xpaas_images $jenkins_images; do
+for img in $xpaas_images $jenkins_images $gluster_images; do
   # Latest only
   skopeo copy --dest-tls-verify=$DEST_REGISTRY_SECURE docker://$UPSTREAM_REGISTRY/$img docker://$REGISTRY/$img
 done
