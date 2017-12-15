@@ -7,9 +7,9 @@ fi
 
 OSE_VERS=3.7
 UPSTREAM_REGISTRY=registry.access.redhat.com
-REGISTRY=docker-distribution.example.com:5000
+REGISTRY=registry.example.com:5000
 
-DEST_REGISTRY_SECURE=false
+DEST_REGISTRY_SECURE=true
 
 ose_images="
   openshift3/ose-deployer
@@ -30,6 +30,9 @@ ose_images="
   openshift3/container-engine
   openshift3/ose-cluster-capacity
   openshift3/ose-ansible
+  openshift3/prometheus
+  openshift3/prometheus-alert-buffer
+  openshift3/prometheus-alertmanager
 "
 
 ose_images_cont="
