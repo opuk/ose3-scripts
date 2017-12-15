@@ -15,3 +15,14 @@
     dest: /etc/origin/ipa.crt
   when: ca_file.stat.exists
 
+- name: Check for ca-chain.ppem
+  local_action: stat path=/root/ca-chain.pem
+  register: ca_chain_file
+
+- name: Copy CA chain certificate
+  copy:
+    src: /root/ca-chain.pem
+    dest: /etc/origin/master/ca-chain.oem
+  when: ca_chain_file.stat.exists
+
+
