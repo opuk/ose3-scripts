@@ -7,7 +7,7 @@ fi
 
 OSE_VERS=3.7
 UPSTREAM_REGISTRY=registry.access.redhat.com
-REGISTRY=registry.example.com:5000
+REGISTRY=registry.lab.kupo.se:5000
 
 DEST_REGISTRY_SECURE=true
 
@@ -33,6 +33,7 @@ ose_images="
   openshift3/prometheus
   openshift3/prometheus-alert-buffer
   openshift3/prometheus-alertmanager
+  openshift3/ose-service-catalog
 "
 
 ose_images_cont="
