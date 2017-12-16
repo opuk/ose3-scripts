@@ -34,6 +34,7 @@ ose_images="
   openshift3/prometheus-alert-buffer
   openshift3/prometheus-alertmanager
   openshift3/ose-service-catalog
+  openshift3/ose-ansible-service-broker
 "
 
 ose_images_cont="
