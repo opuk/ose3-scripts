@@ -9,3 +9,6 @@
 - name: Update all packages
   yum: name=* state=latest
 
+- name: set time zone
+  timezone:
+    name: {{ timezone }}
