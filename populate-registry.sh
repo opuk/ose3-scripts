@@ -135,7 +135,7 @@ done
 # Push
 if [ "$USE_SKOPEO" != "yes" ]; then
   images="$(docker images)"
-  for img in $ose_images $ose_images_cont $ose_images_opt $xpaas_images $jenkins_images; do
+  for img in $ose_images $ose_images_cont $ose_images_opt $xpaas_images $jenkins_images $gluster_images; do
     for tag in $(printf %s\\n "$images" | awk '/'$UPSTREAM\\/${img/\//\\/}' / {print $2}'); do
       [ "$tag" = "<none>" ] && continue
       docker tag $UPSTREAM/$img:$tag $REGISTRY/$img:$tag || exit 3
