@@ -22,10 +22,14 @@
     command: dd if=/dev/zero of="{{device}}" bs=1M count=10
     when: docker_storage_test.rc == 0
 
-  - name: remove config file
+  - name: remove config file and nuke /var/lib/docker
     file:
-      dest: /etc/sysconfig/docker-storage
+      dest: "{{ item }}"
       state: absent
+      recurse: true
+    with_items:
+      - /etc/sysconfig/docker-stora
+      - /var/lib/docker
 
   - name: nuke gluster 
     command: dd if=/dev/zero of="{{gluster_device}}" bs=1M count=10
