@@ -24,12 +24,14 @@
 
   - name: remove config file and nuke /var/lib/docker
     file:
-      dest: "{{ item }}"
+      dest: /etc/sysconfig/docker-storage
+      state: absent
+
+  - name: remove /var/lib/docker
+    file:
+      dest: /var/lib/docker
       state: absent
       recurse: true
-    with_items:
-      - /etc/sysconfig/docker-storage
-      - /var/lib/docker
 
   - name: nuke gluster 
     command: dd if=/dev/zero of="{{gluster_device}}" bs=1M count=10
