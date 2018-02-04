@@ -1,0 +1,32 @@
+---
+- hosts: masters:nodes
+  vars:
+    device: /dev/vdb
+    gluster_device: /dev/vdc
+    docker_vg: docker-vg
+
+  tasks:
+  - name: stop docker
+    service:
+      name: docker
+      enabled: false
+      state: stopped
+
+  - name: check for docker storage
+    shell: vgs | grep -q "{{docker_vg}}"
+    failed_when: False
+    changed_when: False
+    register: docker_storage_test
+
+  - name: nuke docker storage
+    command: dd if=/dev/zero of="{{device}}" bs=1M count=10
+    when: docker_storage_test.rc == 0
+
+  - name: remove config file
+    file:
+      dest: /etc/sysconfig/docker-storage
+      state: absent
+
+  - name: nuke gluster 
+    command: dd if=/dev/zero of="{{gluster_device}}" bs=1M count=10
+
