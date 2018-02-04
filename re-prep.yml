@@ -1,0 +1,6 @@
+---
+# For use when reinstalling OCP, this playbook needs to be run after the OCP uninstall playbook
+
+- include: playbooks/nuke-storage.yml
+- include: playbooks/reboot.yml
+- include: prep.yml
