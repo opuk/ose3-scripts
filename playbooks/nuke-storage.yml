@@ -28,7 +28,7 @@
       state: absent
       recurse: true
     with_items:
-      - /etc/sysconfig/docker-stora
+      - /etc/sysconfig/docker-storage
       - /var/lib/docker
 
   - name: nuke gluster 
