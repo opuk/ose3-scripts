@@ -16,4 +16,5 @@
       port: 22 
       timeout: 300 
       delay: 10
+    delegate_to: localhost
 
