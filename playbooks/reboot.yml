@@ -11,7 +11,7 @@
 
   - name: Wait for the server to finish rebooting
     wait_for: 
-      host="{{ inventory_hostname }}" 
+      host: "{{ inventory_hostname }}" 
       search_regex: OpenSSH 
       port: 22 
       timeout: 300 
