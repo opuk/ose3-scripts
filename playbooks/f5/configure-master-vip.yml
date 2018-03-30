@@ -15,6 +15,7 @@
       partition: "{{ f5_partition | default('Common') }}"
       host: "{{ item.host }}"
       name: "{{ item.name }}"
+      validate_certs: false
     with_items:
       - "{{ masters }}"
 
@@ -26,8 +27,10 @@
       state: "{{ f5_state | default('present') }}"
       name: openshift-master-pool
       partition: "{{ f5_partition | default('Common') }}"
-      host: "{{ item.name }}"
+      host: "{{ item.host }}"
       port: 8443
+      validate_certs: false
+      monitor_type: and_list
       monitors:
         - /Common/https
     delegate_to: localhost
@@ -47,6 +50,7 @@
       port: 8443
       pool: openshift-master-pool
       snat: "Automap"
+      validate_certs: false
     delegate_to: localhost
 
   - name: Create internal VIP
@@ -62,4 +66,5 @@
       port: 8443
       pool: openshift-master-pool
       snat: "Automap"
+      validate_certs: false
     delegate_to: localhost
