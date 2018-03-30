@@ -1,6 +1,6 @@
 #!/bin/sh
 
-OSE_VERS=3.7
+OSE_VERS=3.9
 REG_VERS=2
 UPSTREAM=registry.access.redhat.com
 REGISTRY=registry.example.com:5000
@@ -35,6 +35,8 @@ ose_images="
   openshift3/prometheus-alertmanager
   openshift3/ose-service-catalog
   openshift3/ose-ansible-service-broker
+  openshift3/ose-web-console
+  openshift3/ose-template-service-broker
 "
 
 ose_images_cont="
