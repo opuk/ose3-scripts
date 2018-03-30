@@ -2,22 +2,19 @@
 # tasks file for common_prep
 #- name: deploy repo file
 #  command: curl http://192.168.122.247/pub/ose3.repo -o /etc/yum.repos.d/ose3.repo
-#  args:  
+#  args:
 #    creates: /etc/yum.repos.d/ose3.repo
 #  when: local_repos
 
 - name: enable repositories
   yum_repository:
     name: "{{ item }}"
-    baseurl: "http://rpm.example.com/repos/{{ item }}"
+    baseurl: "http://{{ repo_server }}/repos/{{ item }}"
     enabled: true
     description: "{{ item }}"
     gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
   with_items:
-    - rhel-7-server-rpms
-    - rhel-7-server-extras-rpms
-    - rhel-7-server-ose-3.9-rpms
-    - rhel-7-server-ansible-2.4-rpms
+    - "{{ common_repos }}"
   when: local_repos
 
 - name: Update all packages
