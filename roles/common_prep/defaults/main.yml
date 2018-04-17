@@ -7,4 +7,5 @@ common_repos:
   - rhel-7-server-extras-rpms
   - rhel-7-server-ose-3.9-rpms
   - rhel-7-server-ansible-2.4-rpms
+  - rhel-7-fast-datapath-rpms
 repo_server: rpm.example.com
