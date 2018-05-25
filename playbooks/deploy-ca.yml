@@ -1,0 +1,13 @@
+- hosts: all
+  vars:
+    cacert: /tmp/ca-chain.pem
+  tasks:
+    - name: deploy certificate
+      copy:
+        src: "{{ cacert }}"
+        dest: "/etc/pki/ca-trust/source/anchors/ca-chain.pem"
+      register: copyresult
+ 
+    - name: update CA trust
+      command: update-ca-trust
+      when: copyresult.changed
