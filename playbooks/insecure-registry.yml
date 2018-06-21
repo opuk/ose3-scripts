@@ -1,0 +1,18 @@
+---
+- hosts: all
+  vars:
+    registry: workstation.example.com:5000
+  tasks:
+  - name: configure docker
+    lineinfile:
+      path: /etc/sysconfig/docker
+      regexp: '^OPTIONS'
+      line: "OPTIONS='--selinux-enabled --log-driver=journald --signature-verification=false --insecure-registry {{ registry }}'"
+    register: linefixed
+
+  - name: restart docker
+    service:
+      name: docker
+      state: restarted
+    when: linefixed.changed
+
