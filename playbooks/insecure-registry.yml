@@ -3,6 +3,11 @@
   vars:
     registry: workstation.example.com:5000
   tasks:
+  - name: install docker
+    package:
+      name: docker
+      state: installed
+
   - name: configure docker
     lineinfile:
       path: /etc/sysconfig/docker
