@@ -4,14 +4,14 @@
   roles:
     - common_prep
 
-- hosts: masters
-  become: True
-  gather_facts: False
-  roles:
-    - master_prep
-
-- hosts: nodes
-  become: True
-  gather_facts: False
-  roles:
-    - node_prep
+#- hosts: masters
+#  become: True
+#  gather_facts: False
+#  roles:
+#    - master_prep
+#
+#- hosts: nodes
+#  become: True
+#  gather_facts: False
+#  roles:
+#    - node_prep
