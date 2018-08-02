@@ -12,6 +12,7 @@ SKOPEO_DEST_VERIFY=false
 
 ose_images="
   openshift3/ose-service-catalog
+  openshift3/ose-ansible-service-broker
   openshift3/csi-attacher
   openshift3/csi-driver-registrar
   openshift3/csi-livenessprobe
