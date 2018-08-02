@@ -5,7 +5,7 @@ REG_VERS=2
 UPSTREAM=registry.access.redhat.com
 REGISTRY=registry.example.com:5000
 # https://bugzilla.redhat.com/show_bug.cgi?id=1481130
-USE_SKOPEO=no
+USE_SKOPEO=yes
 SKOPEO_DEST_VERIFY=false
 
 # Add/remove XXX to variable names to disable/enable syncing of the images
