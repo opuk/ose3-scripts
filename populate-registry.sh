@@ -11,6 +11,7 @@ SKOPEO_DEST_VERIFY=false
 # Add/remove XXX to variable names to disable/enable syncing of the images
 
 ose_images="
+  openshift3/ose-service-catalog
   openshift3/csi-attacher
   openshift3/csi-driver-registrar
   openshift3/csi-livenessprobe
