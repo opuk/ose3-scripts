@@ -1,0 +1,12 @@
+---
+# tasks file for pre_seed
+- name: pre-seed docker images
+  docker_image:
+    name: "{{ item }}"
+  with_items:
+    - openshift3/ose-node:{{ ocp_release }}
+    - openshift3/ose-deployer:{{ ocp_release }}
+    - openshift3/ose-pod:{{ ocp_release }}
+    - rhgs3/rhgs-server-rhel7:latest
+  when: preseed_docker_images
+
