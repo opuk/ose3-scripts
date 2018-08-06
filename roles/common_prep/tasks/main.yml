@@ -8,7 +8,7 @@
 
 - name: enable repositories
   yum_repository:
-    name: "{{ item }}"
+    name: "local-{{ item }}"
     baseurl: "http://{{ repo_server }}/repos/{{ item }}"
     enabled: true
     description: "{{ item }}"
