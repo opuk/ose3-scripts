@@ -24,6 +24,12 @@
   timezone:
     name: "{{ timezone }}"
 
+- name: enable docker service
+  service:
+    name: docker
+    enabled: true
+    state: started
+
 - name: pre-seed docker images
   docker_image:
     name: "{{ item }}"
