@@ -1,0 +1,15 @@
+---
+- hosts: masters:nodes
+  vars:
+    gluster_device: /dev/vdb
+
+  tasks:
+  - name: stop docker
+    service:
+      name: docker
+      enabled: false
+      state: stopped
+
+  - name: nuke gluster 
+    command: dd if=/dev/zero of="{{gluster_device}}" bs=1M count=10
+
