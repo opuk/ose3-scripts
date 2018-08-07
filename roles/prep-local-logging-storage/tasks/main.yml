@@ -1,0 +1,13 @@
+---
+# tasks file for prep-hostpath-storage
+#
+- name: create directories on log servers
+  file:
+    path: "{{ item }}"
+    state: directory
+    setype: svirt_sandbox_file_t 
+    owner: 1000060000
+  with_items:
+    - /var/lib/es-storage
+
+

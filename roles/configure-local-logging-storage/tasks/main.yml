@@ -1,0 +1,90 @@
+---
+- name: change to logging project
+  command: oc project openshift-logging
+  tags: init
+
+- name: allow logging to use hostaccess scc
+  command: oc adm policy add-scc-to-user hostaccess aggregated-logging-elasticsearch
+  tags: init
+
+- name: get dc names
+  shell: oc get dc --selector logging-infra=elasticsearch | awk '{print $1}' | tail -n -3
+  register: dcs
+  tags: init
+
+#  - name: print dcs
+#    debug:
+#      msg: dc {{ item.0 + 1 }} is named {{ item.1 }}
+#    with_indexed_items: "{{ dcs.stdout.splitlines() }}"
+#    tags: init
+
+- name: scale down each dc
+  command: oc scale dc {{ item }} --replicas=0
+  with_items: "{{ dcs.stdout.splitlines() }}"
+  tags: scale_down
+
+- name: wait for scale down
+  pause:
+    minutes: 1
+
+#  - name: patch each dc to run in privileged
+#    command: oc patch dc {{ item }} -p '{"spec":{"template":{"spec":{"containers":[{"name":"elasticsearch","securityContext":{"privileged":true}}]}}}}'
+#    with_items: "{{ dcs.stdout.splitlines() }}"
+#    tags: patch
+
+- name: patch each dc with a node selector
+  command: oc patch dc {{ item.1 }} -p '{"spec":{"template":{"spec":{"nodeSelector":{"logging-es-node":"{{ item.0 + 1 }}"}}}}}'
+  with_indexed_items: "{{ dcs.stdout.splitlines() }}"
+  tags: patch
+
+- name: deploy pv template
+  template:
+    src: hostpath-pv-template.yml
+    dest: /tmp/hostpath-pv-template.yml
+  tags: pvs
+
+- name: create pvs
+  shell: oc process -f /tmp/hostpath-pv-template.yml -p NAME=es-pv-{{ item }} -p ACCESS_MODE=ReadWriteOnce -p SIZE=500Gi -p PATH=/var/lib/es-storage | oc create -f -
+  with_items:
+    - '1'
+    - '2'
+    - '3'
+  tags: pvs
+
+- name: deploy pvc template
+  template:
+    src: pvc-template.yml
+    dest: /tmp/pvc-template.yml
+  tags: pvcs
+
+- name: create pvcs
+  shell: oc process -f /tmp/pvc-template.yml -p NAME=es-pvc-{{ item }} -p ACCESS_MODE=ReadWriteOnce -p SIZE=500Gi -p PV_NAME=es-pv-{{ item }} | oc create -f -
+  with_items:
+    - '1'
+    - '2'
+    - '3'
+  tags: pvcs
+
+- name: set volume for each dc
+  command: oc set volume dc {{ item.1 }} --add --overwrite --name=elasticsearch-storage --claim-name=es-pvc-{{ item.0 + 1 }} --type=persistentVolumeClaim
+  with_indexed_items: "{{ dcs.stdout.splitlines() }}"
+  tags: set_volumes
+
+- name: wait for dc to settle
+  pause:
+    minutes: 1
+
+- name: rollout latest version of each dc
+  command:  oc rollout latest dc/{{ item }}
+  with_items: "{{ dcs.stdout.splitlines() }}"
+  tags: rollout
+
+- name: wait for rollout
+  pause:
+    minutes: 1
+
+- name: scale up each dc
+  command: oc scale dc {{ item }} --replicas=1
+  with_items: "{{ dcs.stdout.splitlines() }}"
+  tags: scale_up
+

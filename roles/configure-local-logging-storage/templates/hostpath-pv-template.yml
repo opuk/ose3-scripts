@@ -1,0 +1,37 @@
+ApiVersion: v1
+kind: Template
+metadata:
+  name: hostpath-pv-template
+objects:
+- apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    name: ${NAME}
+  spec:
+    accessModes:
+    - ${ACCESS_MODE}
+    capacity:
+      storage: ${SIZE}
+    hostPath:
+      path: ${PATH}
+    persistentVolumeReclaimPolicy: ${RECLAIM_POLICY}
+
+parameters:
+  - name: NAME
+    required: true
+ 
+  - name: ACCESS_MODE
+    required: false
+    value: ReadWriteOnce
+
+  - name: SIZE
+    required: false
+    value: 1Gi
+
+  - name: PATH
+    required: true 
+
+  - name: RECLAIM_POLICY
+    required: false
+    value: Retain
+

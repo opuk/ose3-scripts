@@ -1,0 +1,16 @@
+# Make sure nodes are labeled before running
+#
+# TODO: fix owner
+#
+# Example:
+# oc label node infra1 logging-es-node=1
+# oc label node infra2 logging-es-node=2
+# oc label node infra3 logging-es-node=3
+
+- hosts: logservers
+  roles:
+    - prep-local-logging-storage
+
+- hosts: masters[0]
+  roles:
+    - configure-local-logging-storage

@@ -1,0 +1,31 @@
+ApiVersion: v1
+kind: Template
+metadata:
+  name: pvc-template
+objects:
+- apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    name: ${NAME}
+  spec:
+    accessModes:
+      - ${ACCESS_MODE}
+    resources:
+      requests:
+        storage: ${SIZE}
+    volumeName: ${PV_NAME}
+
+parameters:
+  - name: NAME
+    required: true
+ 
+  - name: ACCESS_MODE
+    required: false
+    value: ReadWriteOnce
+
+  - name: SIZE
+    required: false
+    value: 1Gi
+
+  - name: PV_NAME
+    required: true
