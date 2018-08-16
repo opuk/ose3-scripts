@@ -1,0 +1,8 @@
+---
+# tasks file for configure_lab_dns
+#FIXME
+- name: configure DNS
+  command: nmcli con mod "System eth0" ipv4.dns {{ dns_server }} ipv4.ignore-auto-dns yes
+  when: configure_dns and dns_server
+  notify: restart NetworkManager
+

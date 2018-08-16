@@ -1,0 +1,7 @@
+---
+# handlers file for configure_lab_dns
+- name: restart NetworkManager
+  service:
+    name: NetworkManager
+    state: restarted
+
