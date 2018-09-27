@@ -3,3 +3,6 @@
     - name: remove host
       command: ipa host-del {{ ansible_fqdn }} --updatedns
       delegate_to: localhost
+
+    - name: uninstall ipa-client
+      command: ipa-client-install --uninstall -U
