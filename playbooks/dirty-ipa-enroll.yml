@@ -1,4 +1,12 @@
 - hosts: all
+  tasks:
+    - name: install packages
+      yum:
+        name: ipa-client
+        state: installed
+
+
+- hosts: all
   serial: 1
   vars:
     otp_password: Secret123
@@ -7,19 +15,6 @@
     - name: pre-register host
       command: ipa host-add --password {{ otp_password }} --force {{ ansible_fqdn }}
       delegate_to: localhost
-
-    - name: install packages
-      yum:
-        name: ipa-client
-        state: installed
-
-#    - name: set DNS
-#      command: nmcli con mod "System eth0" ipv4.dns {{ dns_server }} ipv4.ignore-auto-dns yes
-#
-#    - name: restart NetworkManager
-#      service:
-#        name: NetworkManager
-#        state: restarted
 
     - name: enroll server
       command: ipa-client-install -w {{ otp_password }} -U
