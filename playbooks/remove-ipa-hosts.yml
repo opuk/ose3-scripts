@@ -1,0 +1,5 @@
+- hosts: all
+  tasks:
+    - name: remove host
+      command: ipa host-del {{ ansible_fqdn }} --updatedns
+      delegate_to: localhost
