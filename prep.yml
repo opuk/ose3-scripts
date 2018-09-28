@@ -7,17 +7,20 @@
 
 - hosts: all
   become: True
+  name: apply common role
   gather_facts: False
   roles:
     - common_prep
 
 - hosts: all
+  name: configure chrony
   vars:
     chrony_server: 'idm01.lab.moogle.cloud prefer iburst'
   roles:
      - { role: influxdata.chrony }
 
 - hosts: all
+  name: reboot all servers
   become: True
   gather_facts: False
   roles:

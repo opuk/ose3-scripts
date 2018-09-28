@@ -9,6 +9,7 @@
       name: docker
       enabled: false
       state: stopped
+    ignore_errors: true
 
   - name: nuke gluster 
     command: dd if=/dev/zero of="{{gluster_device}}" bs=1M count=10
