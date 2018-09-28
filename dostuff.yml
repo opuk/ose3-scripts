@@ -1,3 +1,4 @@
 - import_playbook: playbooks/keys.yml
 - import_playbook: prep.yml
+- import_playbook: preseed.yml
 - import_playbook: playbooks/dirty-ipa-enroll.yml

@@ -1,6 +1,6 @@
 ---
 # tasks file for pre_seed
-- name: pre-seed docker images
+- name: pre-seed container images
   docker_image:
     name: "{{ item }}"
   with_items:
