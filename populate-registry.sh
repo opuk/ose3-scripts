@@ -1,6 +1,6 @@
 #!/bin/sh
 
-OSE_VERS=3.10
+OSE_VERS=3.11
 REG_VERS=2
 UPSTREAM=registry.access.redhat.com
 REGISTRY=registry.example.com:5000
@@ -11,39 +11,54 @@ SKOPEO_DEST_VERIFY=false
 # Add/remove XXX to variable names to disable/enable syncing of the images
 
 ose_images="
-  openshift3/ose-template-service-broker
-  openshift3/ose-service-catalog
-  openshift3/ose-ansible-service-broker
+  openshift3/apb-base
+  openshift3/apb-tools
+  openshift3/automation-broker-apb
   openshift3/csi-attacher
   openshift3/csi-driver-registrar
   openshift3/csi-livenessprobe
   openshift3/csi-provisioner
-  openshift3/efs-provisioner
+  openshift3/grafana
   openshift3/image-inspector
-  openshift3/local-storage-provisioner
-  openshift3/manila-provisioner
+  openshift3/mariadb-apb
+  openshift3/mediawiki
+  openshift3/mediawiki-apb
+  openshift3/mysql-apb
   openshift3/ose-ansible
+  openshift3/ose-ansible-service-broker
   openshift3/ose-cli
+  openshift3/ose-cluster-autoscaler
   openshift3/ose-cluster-capacity
+  openshift3/ose-cluster-monitoring-operator
+  openshift3/ose-console
+  openshift3/ose-configmap-reloader
+  openshift3/ose-control-plane
   openshift3/ose-deployer
   openshift3/ose-descheduler
   openshift3/ose-docker-builder
   openshift3/ose-docker-registry
+  openshift3/ose-efs-provisioner
   openshift3/ose-egress-dns-proxy
   openshift3/ose-egress-http-proxy
   openshift3/ose-egress-router
-  openshift3/ose-f5-router
   openshift3/ose-haproxy-router
   openshift3/ose-hyperkube
   openshift3/ose-hypershift
   openshift3/ose-keepalived-ipfailover
-  openshift3/ose-pod
-  openshift3/ose-docker-builder
-  openshift3/ose-node-problem-detector
-  openshift3/ose-recycler
-  openshift3/ose-web-console
+  openshift3/ose-kube-rbac-proxy
+  openshift3/ose-kube-state-metrics
+  openshift3/ose-metrics-server
   openshift3/ose-node
-  openshift3/ose-control-plane
+  openshift3/ose-node-problem-detector
+  openshift3/ose-operator-lifecycle-manager
+  openshift3/ose-pod
+  openshift3/ose-prometheus-config-reloader
+  openshift3/ose-prometheus-operator
+  openshift3/ose-recycler
+  openshift3/ose-service-catalog
+  openshift3/ose-template-service-broker
+  openshift3/ose-web-console
+  openshift3/postgresql-apb
   openshift3/registry-console
   openshift3/snapshot-controller
   openshift3/snapshot-provisioner
@@ -51,40 +66,27 @@ ose_images="
 "
 
 ose_images_cont="
-  openshift3/logging-auth-proxy
-  openshift3/logging-curator
-  openshift3/logging-elasticsearch
-  openshift3/logging-eventrouter
-  openshift3/logging-fluentd
-  openshift3/logging-kibana
-  openshift3/oauth-proxy
   openshift3/metrics-cassandra
   openshift3/metrics-hawkular-metrics
   openshift3/metrics-hawkular-openshift-agent
   openshift3/metrics-heapster
-  openshift3/metrics-schema-installer
+  openshift3/oauth-proxy
+  openshift3/ose-logging-curator5
+  openshift3/ose-logging-elasticsearch5
+  openshift3/ose-logging-eventrouter
+  openshift3/ose-logging-fluentd
+  openshift3/ose-logging-kibana5
+  openshift3/ose-metrics-schema-installer
   openshift3/prometheus
   openshift3/prometheus-alert-buffer
   openshift3/prometheus-alertmanager
   openshift3/prometheus-node-exporter
-  cloudforms46/cfme-openshift-postgresql
-  cloudforms46/cfme-openshift-memcached
-  cloudforms46/cfme-openshift-app-ui
-  cloudforms46/cfme-openshift-app
-  cloudforms46/cfme-openshift-embedded-ansible
-  cloudforms46/cfme-openshift-httpd
-  cloudforms46/cfme-httpd-configmap-generator
   rhgs3/rhgs-server-rhel7
   rhgs3/rhgs-volmanager-rhel7
   rhgs3/rhgs-gluster-block-prov-rhel7
   rhgs3/rhgs-s3-server-rhel7
 "
 
-ose_images_opt="
-  openshift3/ose-egress-router
-  openshift3/ose-keepalived-ipfailover
-  openshift3/image-inspector
-"
 
 xpaas_images="
   redhat-openjdk-18/openjdk18-openshift
