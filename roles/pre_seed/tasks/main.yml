@@ -8,5 +8,57 @@
     - openshift3/ose-deployer:{{ ocp_release }}
     - openshift3/ose-pod:{{ ocp_release }}
     - rhgs3/rhgs-server-rhel7:latest
+    - openshift3/apb-base:{{ ocp_release }}
+    - openshift3/apb-tools:{{ ocp_release }}
+    - openshift3/automation-broker-apb:{{ ocp_release }}
+    - openshift3/csi-attacher:{{ ocp_release }}
+    - openshift3/csi-driver-registrar:{{ ocp_release }}
+    - openshift3/csi-livenessprobe:{{ ocp_release }}
+    - openshift3/csi-provisioner:{{ ocp_release }}
+    - openshift3/grafana:{{ ocp_release }}
+    - openshift3/image-inspector:{{ ocp_release }}
+    - openshift3/mariadb-apb:{{ ocp_release }}
+    - openshift3/mediawiki:{{ ocp_release }}
+    - openshift3/mediawiki-apb:{{ ocp_release }}
+    - openshift3/mysql-apb:{{ ocp_release }}
+    - openshift3/ose-ansible:{{ ocp_release }}
+    - openshift3/ose-ansible-service-broker:{{ ocp_release }}
+    - openshift3/ose-cli:{{ ocp_release }}
+    - openshift3/ose-cluster-autoscaler:{{ ocp_release }}
+    - openshift3/ose-cluster-capacity:{{ ocp_release }}
+    - openshift3/ose-cluster-monitoring-operator:{{ ocp_release }}
+    - openshift3/ose-console:{{ ocp_release }}
+    - openshift3/ose-configmap-reloader:{{ ocp_release }}
+    - openshift3/ose-control-plane:{{ ocp_release }}
+    - openshift3/ose-deployer:{{ ocp_release }}
+    - openshift3/ose-descheduler:{{ ocp_release }}
+    - openshift3/ose-docker-builder:{{ ocp_release }}
+    - openshift3/ose-docker-registry:{{ ocp_release }}
+    - openshift3/ose-efs-provisioner:{{ ocp_release }}
+    - openshift3/ose-egress-dns-proxy:{{ ocp_release }}
+    - openshift3/ose-egress-http-proxy:{{ ocp_release }}
+    - openshift3/ose-egress-router:{{ ocp_release }}
+    - openshift3/ose-haproxy-router:{{ ocp_release }}
+    - openshift3/ose-hyperkube:{{ ocp_release }}
+    - openshift3/ose-hypershift:{{ ocp_release }}
+    - openshift3/ose-keepalived-ipfailover:{{ ocp_release }}
+    - openshift3/ose-kube-rbac-proxy:{{ ocp_release }}
+    - openshift3/ose-kube-state-metrics:{{ ocp_release }}
+    - openshift3/ose-metrics-server:{{ ocp_release }}
+    - openshift3/ose-node:{{ ocp_release }}
+    - openshift3/ose-node-problem-detector:{{ ocp_release }}
+    - openshift3/ose-operator-lifecycle-manager:{{ ocp_release }}
+    - openshift3/ose-pod:{{ ocp_release }}
+    - openshift3/ose-prometheus-config-reloader:{{ ocp_release }}
+    - openshift3/ose-prometheus-operator:{{ ocp_release }}
+    - openshift3/ose-recycler:{{ ocp_release }}
+    - openshift3/ose-service-catalog:{{ ocp_release }}
+    - openshift3/ose-template-service-broker:{{ ocp_release }}
+    - openshift3/ose-web-console:{{ ocp_release }}
+    - openshift3/postgresql-apb:{{ ocp_release }}
+    - openshift3/registry-console:{{ ocp_release }}
+    - openshift3/snapshot-controller:{{ ocp_release }}
+    - openshift3/snapshot-provisioner:{{ ocp_release }}
+    - rhel7/etcd:3.2.22
   when: preseed_docker_images
 
