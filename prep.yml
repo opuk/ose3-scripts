@@ -13,6 +13,11 @@
     - common_prep
 
 - hosts: all
+  name: configure ephemeral container storage
+  roles:
+    - docker_storage
+
+- hosts: all
   name: configure chrony
   vars:
     chrony_server: 'idm01.lab.moogle.cloud prefer iburst'

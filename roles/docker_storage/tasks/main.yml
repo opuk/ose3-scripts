@@ -1,0 +1,22 @@
+---
+# tasks file for docker_storage
+#
+- name: install docker
+  yum:
+    name: docker
+    state: installed
+
+- name: configure /etc/sysconfig/docker-storage-setup
+  template:
+    src: docker-storage-setup.j2
+    dest: /etc/sysconfig/docker-storage-setup
+
+- name: check if docker-storage is configured
+  command: grep overlay2 /etc/sysconfig/docker-storage
+  failed_when: false
+  register: docker_storage
+
+- name: execute docker-storage-setup
+  command: docker-storage-setup
+  when: docker_storage.rc != 0
+  

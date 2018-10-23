@@ -1,0 +1,7 @@
+#{{ ansible_managed }}
+VG=dockervg
+STORAGE_DRIVER=overlay2
+DEVS={{ docker_device }}
+CONTAINER_ROOT_LV_NAME=dockerlv
+CONTAINER_ROOT_LV_SIZE=100%FREE
+CONTAINER_ROOT_LV_MOUNT_PATH=/var/lib/docker

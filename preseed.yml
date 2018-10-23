@@ -1,4 +1,4 @@
-- hosts: openshift
+- hosts: all
   serial: 2
   roles:
     - pre_seed
