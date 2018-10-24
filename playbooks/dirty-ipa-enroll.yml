@@ -12,11 +12,17 @@
   name: enroll to ipa server
   vars:
     otp_password: Secret123
-    dns_server: 192.168.190.38
   tasks:
+    - name: check if enrolled
+      command: ipa host-find {{ ansible_fqdn }}
+      register: enrolled
+      delegate_to: localhost
+
     - name: pre-register host
       command: ipa host-add --password {{ otp_password }} --force {{ ansible_fqdn }}
       delegate_to: localhost
+      when: enrolled.rc != 0
 
     - name: enroll server
       command: ipa-client-install -w {{ otp_password }} -U
+      when: enrolled.rc != 0
