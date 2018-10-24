@@ -6,6 +6,9 @@
 #    creates: /etc/yum.repos.d/ose3.repo
 #  when: local_repos
 
+- name: verify all hosts are reachable
+  ping:
+
 - name: enable repositories
   yum_repository:
     name: "local-{{ item }}"
@@ -19,8 +22,12 @@
 
 - name: Update all packages
   yum: name=* state=latest update_cache=true
+  register: updated_packages
 
 - name: set time zone
   timezone:
     name: "{{ timezone }}"
 
+- include_role:
+    name: opuk.reboot
+  when: updated_packages.changed

@@ -14,6 +14,7 @@
 - name: check if docker-storage is configured
   command: grep overlay2 /etc/sysconfig/docker-storage
   failed_when: false
+  changed_when: false
   register: docker_storage
 
 - name: execute docker-storage-setup

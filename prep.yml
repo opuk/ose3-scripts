@@ -12,7 +12,7 @@
   roles:
     - common_prep
 
-- hosts: all
+- hosts: masters,nodes
   name: configure ephemeral container storage
   roles:
     - docker_storage
@@ -23,12 +23,5 @@
     chrony_server: 'idm01.lab.moogle.cloud prefer iburst'
   roles:
      - { role: influxdata.chrony }
-
-- hosts: all
-  name: reboot all servers
-  become: True
-  gather_facts: False
-  roles:
-    - opuk.reboot
 
 
