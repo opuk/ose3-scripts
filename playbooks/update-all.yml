@@ -1,0 +1,23 @@
+- hosts: all
+  gather_facts: False
+  become: yes
+
+  tasks:
+    - name: install yum-utils
+      package:
+        name: yum-utils
+        state: installed
+
+    - name: Update all packages
+      yum:
+        name: "*"
+        update_cache: True
+        state: latest
+
+    - name: check if reboot is needed
+      command: needs-restarting -r
+      register: restart
+      failed_when: false
+      changed_when: false
+
+    - debug: var=restart.stdout

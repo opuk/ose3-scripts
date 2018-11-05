@@ -1,0 +1,112 @@
+---
+# Only for use with docker container runtime for now
+#
+# https://docs.openshift.com/container-platform/latest/upgrading/os_upgrades.html
+# XXX Add/verify support for CNS/separate etcd/NFS nodes
+- name: Verify execution outside of OpenShift cluster
+  hosts: 127.0.0.1
+  connection: local
+  tasks:
+    - name: Verify execution host not part of the cluster
+      fail: msg="This playbook must be executed outside of the OpenShift cluster"
+      failed_when: ansible_fqdn in groups.nodes
+
+- name: Verify credentials
+  hosts: masters[0]
+  become: true
+  tasks:
+    - name: Register current credentials on the first master
+      command: oc whoami
+      register: oc_user
+      changed_when: false
+      failed_when: false
+
+    - name: Verify system:admin credentials on the first master
+      fail: msg="Need to be system:admin on the first master"
+      failed_when: oc_user.stdout != "system:admin"
+
+- name: Register scheduling status
+  hosts: nodes
+  become: true
+  tasks:
+    # XXX Avoid shell/grep
+    # oc get node node.example.com -o jsonpath='{.spec.unschedulable}{"\n"}'
+    - name: Register scheduling status
+      shell: oc get nodes {{ inventory_hostname }} | grep -q SchedulingDisabled
+      delegate_to: "{{ groups.masters[0] }}"
+      register: scheduling_disabled
+      changed_when: false
+      failed_when: false
+
+    - name: Set scheduling fact
+      set_fact: schedulable={{ true if scheduling_disabled.rc == 1 else false }}
+
+- name: Register fluentd label
+  hosts: nodes
+  become: true
+  tasks:
+    # XXX Avoid shell/grep
+    - name: Register fluentd label
+      shell: >
+        oc get nodes -o json {{ inventory_hostname }} | grep -Eo \".*fluentd\": | tr -d '"' | tr -d :
+      delegate_to: "{{ groups.masters[0] }}"
+      register: fluentd_label
+      changed_when: false
+      failed_when: false
+
+    - name: Set fluentd label fact
+      set_fact: fluentd_label={{ fluentd_label.stdout if fluentd_label.stdout != "" else false }}
+
+- name: Install OS updates on each node and reboot
+  hosts: nodes
+  become: true
+  any_errors_fatal: true
+  serial: 1
+  tasks:
+    - name: Drain node
+      command: oc adm drain --force --delete-local-data --ignore-daemonsets {{ inventory_hostname }}
+      delegate_to: "{{ groups.masters[0] }}"
+
+    - name: Update packages
+      package: name=* state=latest
+
+
+    #https://bugzilla.redhat.com/show_bug.cgi?id=1441994
+    - name: stop docker
+      service:
+        name: docker
+        state: stopped
+
+    # Avoid detecting node Ready after reboot if not yet marked NotReady
+    # XXX Avoid shell/grep
+    # oc get node node.example.com -o jsonpath='{.status.conditions[?(@.type=="Ready")].status}{"\n"}'
+    - name: Wait for node to be marked offline
+      shell: oc get nodes {{ inventory_hostname }} | grep -q NotReady
+      delegate_to: "{{ groups.masters[0] }}"
+      register: node_offline
+      until: node_offline is success
+      retries: 30
+      delay: 10
+      #when: "not {{ inventory_hostname in groups.masters and groups['masters'] | length == 1 }}"
+
+    - import_role:
+        name: opuk.reboot
+
+    # XXX Avoid shell/grep
+    # oc get node node.example.com -o jsonpath='{.status.conditions[?(@.type=="Ready")].status}{"\n"}'
+    - name: Wait for node to become ready
+      shell: oc get nodes {{ inventory_hostname }} | grep -q " Ready"
+      delegate_to: "{{ groups.masters[0] }}"
+      register: node_online
+      until: node_online is success
+      retries: 30
+      delay: 10
+
+    - name: Enable scheduling
+      command: oc adm uncordon {{ inventory_hostname }}
+      delegate_to: "{{ groups.masters[0] }}"
+      when: schedulable
+
+    - name: Wait for node to calm down
+      pause: minutes=1
+
