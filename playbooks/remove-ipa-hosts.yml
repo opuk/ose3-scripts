@@ -1,8 +1,10 @@
 - hosts: all
+  gather_facts: false
   tasks:
     - name: remove host
-      command: ipa host-del {{ ansible_fqdn }} --updatedns
+      command: ipa host-del {{ inventory_hostname }} --updatedns
       delegate_to: localhost
 
     - name: uninstall ipa-client
       command: ipa-client-install --uninstall -U
+      ignore_errors: true
