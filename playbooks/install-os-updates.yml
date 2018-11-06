@@ -41,22 +41,6 @@
     - name: Set scheduling fact
       set_fact: schedulable={{ true if scheduling_disabled.rc == 1 else false }}
 
-- name: Register fluentd label
-  hosts: nodes
-  become: true
-  tasks:
-    # XXX Avoid shell/grep
-    - name: Register fluentd label
-      shell: >
-        oc get nodes -o json {{ inventory_hostname }} | grep -Eo \".*fluentd\": | tr -d '"' | tr -d :
-      delegate_to: "{{ groups.masters[0] }}"
-      register: fluentd_label
-      changed_when: false
-      failed_when: false
-
-    - name: Set fluentd label fact
-      set_fact: fluentd_label={{ fluentd_label.stdout if fluentd_label.stdout != "" else false }}
-
 - name: Install OS updates on each node and reboot
   hosts: nodes
   become: true
@@ -67,9 +51,32 @@
       command: oc adm drain --force --delete-local-data --ignore-daemonsets {{ inventory_hostname }}
       delegate_to: "{{ groups.masters[0] }}"
 
+# if gluster node Gluster
+    - name: stop gluster pod 
+      block:
+        - name: get gluster pod
+          shell: oc get pods -o wide -n {{ openshift_storage_glusterfs_namespace }} | grep "{{ inventory_hostname }}" | awk '{ print $1 }'
+          delegate_to: "{{ groups.masters[0] }}"
+          register: gluster_pod
+    
+        - name: stop gluster on storage node
+          command: oc label node {{ inventory_hostname }} glusterfs= --overwrite
+          delegate_to: "{{ groups.masters[0] }}"
+      
+        - name: wait for glusterfs pod to terminate
+          command: oc get pods -n {{ openshift_storage_glusterfs_namespace }} {{ gluster_pod.stdout }}
+          delegate_to: "{{ groups.masters[0] }}"
+          register: gluster_terminated
+          ignore_errors: true
+          retries: 30
+          delay: 15
+          until: gluster_terminated is failure
+      when: inventory_hostname in groups.glusterfs
+
+#end if Gluster node
+
     - name: Update packages
       package: name=* state=latest
-
 
     #https://bugzilla.redhat.com/show_bug.cgi?id=1441994
     - name: stop docker
@@ -101,6 +108,40 @@
       until: node_online is success
       retries: 30
       delay: 10
+
+#if Gluster node
+    - name: start gluster pod and heal volumes
+      block: 
+        - name: start gluster on storage node
+          command: oc label node {{ inventory_hostname }} glusterfs=storage-host --overwrite
+          delegate_to: "{{ groups.masters[0] }}"
+
+        - name: wait for gluster to be in ready state
+          shell: oc get pods -o wide -l glusterfs=storage-pod -n {{ openshift_storage_glusterfs_namespace }} | grep {{ inventory_hostname }} | grep '1/1'
+          delegate_to: "{{ groups.masters[0] }}"
+          register: gluster_pod_ready
+          until: gluster_pod_ready is success
+          retries: 30
+          delay: 15
+    
+        - name: switch to gluster project
+          command: oc project {{ openshift_storage_glusterfs_namespace }}
+          delegate_to: "{{ groups.masters[0] }}"
+    
+        - name: get gluster pod
+          shell: oc get pods -o wide -n {{ openshift_storage_glusterfs_namespace }} | grep "{{ inventory_hostname }}" | awk '{ print $1 }'
+          delegate_to: "{{ groups.masters[0] }}"
+          register: gluster_pod
+ 
+        - name: heal gluster volumes
+          command: oc exec {{ gluster_pod.stdout }} -- bash -c 'for vol in $(/usr/sbin/gluster volume list); do /usr/sbin/gluster volume heal $vol info; done'
+          when: inventory_hostname in groups.glusterfs
+          delegate_to: "{{ groups.masters[0] }}"
+          register: heal
+    
+        - debug: var=heal
+      when: inventory_hostname in groups.glusterfs
+#End if Gluster node    
 
     - name: Enable scheduling
       command: oc adm uncordon {{ inventory_hostname }}
