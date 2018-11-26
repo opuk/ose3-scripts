@@ -1,7 +1,8 @@
 - hosts: localhost
-  name: check for kerberos credentials
-  command: klist
-  register: kerberos
+  tasks:
+    - name: check for kerberos credentials
+      command: klist
+      register: kerberos
 
 - fail:
     msg: "You don't have a valid kerberos ticket. Use kinit."
