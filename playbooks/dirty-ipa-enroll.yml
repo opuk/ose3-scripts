@@ -4,9 +4,9 @@
       command: klist
       register: kerberos
 
-- fail:
-    msg: "You don't have a valid kerberos ticket. Use kinit."
-  when: kerberos.rc != 0
+    - fail:
+        msg: "You don't have a valid kerberos ticket. Use kinit."
+      when: kerberos.rc != 0
 
 - hosts: all
   name: install ipa-client
