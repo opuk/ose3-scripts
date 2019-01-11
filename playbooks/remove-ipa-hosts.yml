@@ -4,6 +4,7 @@
     - name: remove host
       command: ipa host-del {{ inventory_hostname }} --updatedns
       delegate_to: localhost
+      ignore_errors: true
 
     - name: uninstall ipa-client
       command: ipa-client-install --uninstall -U
